@@ -52,7 +52,7 @@
         body.light-mode .hero-badge { background: #E5E7EB; }
         body.light-mode .sidebar-theme button { background: #E5E7EB; color: #111827; }
         body.light-mode .lang-switcher { background: #E5E7EB; }
-        body.light-mode .logo p { color: #6B7280; }
+        body.light-mode .logo-text p { color: #6B7280; }
         body.light-mode input,
         body.light-mode textarea,
         body.light-mode select { background: #F3F4F6; border-color: #D1D5DB; color: #111827; }
@@ -69,14 +69,33 @@
 
         .header .container { display: flex; justify-content: space-between; align-items: center; }
 
-        .logo h1 {
-            font-size: 1.6rem; font-weight: 800;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo-img {
+            height: 45px;
+            width: auto;
+            border-radius: 12px;
+            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.4));
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem; font-weight: 800; margin: 0;
             background: linear-gradient(135deg, #10B981, #3B82F6);
             -webkit-background-clip: text; background-clip: text;
             color: transparent;
         }
 
-        .logo p { font-size: 0.7rem; color: #9CA3AF; }
+        .logo-text p { font-size: 0.65rem; color: #9CA3AF; margin: 0; }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #10B981, #3B82F6);
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent;
+        }
 
         .desktop-menu {
             display: flex; align-items: center; gap: 20px;
@@ -478,6 +497,148 @@
         .social-links a { color: #9CA3AF; font-size: 1.3rem; transition: color 0.2s; }
         .social-links a:hover { color: #10B981; }
 
+        /* HOLOGRAM CITATION */
+        .hologram-citation {
+            position: relative; max-width: 750px;
+            margin: 50px auto 40px; padding: 60px 40px;
+            background: radial-gradient(ellipse at 30% 40%, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.98));
+            border-radius: 60px; overflow: hidden; cursor: pointer;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.2), inset 0 0 30px rgba(16, 185, 129, 0.05);
+            transition: all 0.3s ease; transform-style: preserve-3d;
+        }
+        .hologram-citation:hover {
+            box-shadow: 0 0 100px rgba(16, 185, 129, 0.4), inset 0 0 50px rgba(16, 185, 129, 0.1);
+        }
+        .starfield {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0; opacity: 0.7; pointer-events: none;
+        }
+        .laser-scanner {
+            position: absolute; top: -100%; left: 0;
+            width: 100%; height: 200%;
+            background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.3), rgba(59, 130, 246, 0.5), rgba(139, 92, 246, 0.3), transparent);
+            animation: laserScan 5s ease-in-out infinite;
+            pointer-events: none; z-index: 1;
+        }
+        @keyframes laserScan {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100%); opacity: 0; }
+        }
+        .hologram-content { position: relative; z-index: 2; text-align: center; }
+        .quantum-icon {
+            position: relative; width: 70px; height: 70px;
+            margin: 0 auto 25px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .quantum-ring {
+            position: absolute; width: 100%; height: 100%;
+            border: 2px solid #10B981; border-radius: 50%;
+            animation: quantumPulse 2s ease-out infinite;
+        }
+        .quantum-ring::before, .quantum-ring::after {
+            content: ''; position: absolute;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
+            border: 1px solid #3B82F6; border-radius: 50%;
+            animation: quantumPulse 2s ease-out infinite 0.5s;
+        }
+        .quantum-ring::after { animation-delay: 1s; border-color: #8B5CF6; }
+        @keyframes quantumPulse {
+            0% { transform: scale(0.9); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        .quantum-icon i {
+            font-size: 2rem; color: #10B981;
+            z-index: 1; animation: iconSpin 4s linear infinite;
+        }
+        @keyframes iconSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .hologram-text {
+            font-size: 1.3rem; font-weight: 500; line-height: 1.7;
+            color: #10B981; margin: 0 0 20px 0;
+            text-shadow: 0 0 15px #10B981, 0 0 25px rgba(16, 185, 129, 0.5);
+            font-family: 'Inter', monospace;
+        }
+        .author-cosmos { position: relative; margin: 20px 0 25px; padding: 15px 0; }
+        .cosmos-name {
+            display: flex; justify-content: center; flex-wrap: wrap;
+            gap: 4px; font-size: 1.2rem; font-weight: 800; letter-spacing: 2px;
+        }
+        .name-particle {
+            display: inline-block;
+            animation: particleFloat 2.5s ease-in-out infinite;
+            background: linear-gradient(135deg, #10B981, #3B82F6, #8B5CF6);
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent; text-shadow: none; font-weight: 800;
+        }
+        .name-particle:nth-child(1) { animation-delay: 0s; }
+        .name-particle:nth-child(2) { animation-delay: 0.15s; }
+        .name-particle:nth-child(3) { animation-delay: 0.3s; }
+        .name-particle:nth-child(4) { animation-delay: 0.45s; }
+        .name-particle:nth-child(5) { animation-delay: 0.6s; }
+        .name-particle:nth-child(7) { animation-delay: 0.75s; }
+        .name-particle:nth-child(8) { animation-delay: 0.9s; }
+        .name-particle:nth-child(9) { animation-delay: 1.05s; }
+        .name-particle:nth-child(10) { animation-delay: 1.2s; }
+        .name-particle:nth-child(11) { animation-delay: 1.35s; }
+        .name-particle:nth-child(12) { animation-delay: 1.5s; }
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 1; }
+            50% { transform: translateY(-6px) scale(1.1); opacity: 0.8; filter: blur(0.5px); }
+        }
+        .cosmos-trail {
+            position: absolute; bottom: 0; left: 15%;
+            width: 70%; height: 2px;
+            background: linear-gradient(90deg, transparent, #10B981, #3B82F6, #8B5CF6, transparent);
+            animation: trailWave 2s ease-in-out infinite;
+        }
+        @keyframes trailWave {
+            0%, 100% { opacity: 0.3; width: 50%; left: 25%; }
+            50% { opacity: 1; width: 80%; left: 10%; }
+        }
+        .quantum-badge {
+            display: flex; align-items: center;
+            justify-content: center; gap: 12px; margin-top: 20px;
+        }
+        .quantum-energy {
+            width: 30px; height: 2px;
+            background: linear-gradient(90deg, #10B981, #8B5CF6);
+            animation: energyPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes energyPulse {
+            0%, 100% { width: 20px; opacity: 0.5; }
+            50% { width: 45px; opacity: 1; }
+        }
+        .quantum-badge span {
+            font-size: 0.7rem; letter-spacing: 3px; color: #10B981;
+            background: rgba(16, 185, 129, 0.12);
+            padding: 6px 18px; border-radius: 40px; backdrop-filter: blur(4px);
+            animation: badgeGlow 3s ease-in-out infinite;
+        }
+        @keyframes badgeGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.3); text-shadow: 0 0 5px #10B981; }
+            50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); text-shadow: 0 0 12px #8B5CF6; }
+        }
+        .heat-distortion {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none; z-index: 3; transition: all 0.3s;
+        }
+        .hologram-citation:hover .heat-distortion {
+            backdrop-filter: blur(2px) brightness(1.02);
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(16, 185, 129, 0.08), transparent 60%);
+        }
+        body.light-mode .hologram-citation {
+            background: radial-gradient(ellipse at 30% 40%, rgba(245, 245, 255, 0.97), rgba(230, 230, 250, 0.98));
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+        body.light-mode .hologram-text { color: #059669; }
+        body.light-mode .quantum-badge span {
+            background: rgba(16, 185, 129, 0.15); color: #059669;
+        }
+
         .footer-copyright {
             text-align: center; padding-top: 20px;
             border-top: 1px solid #1F2937;
@@ -668,6 +829,253 @@
             .partner-card img { width: 70px; height: 45px; }
             .devis-form .form-row { grid-template-columns: 1fr; gap: 12px; }
             .devis-card { padding: 24px; }
+            .hologram-citation { margin: 30px 15px; padding: 35px 20px; border-radius: 40px; }
+            .hologram-citation .hologram-text { font-size: 0.95rem; line-height: 1.5; }
+            .hologram-citation .cosmos-name { font-size: 0.85rem; gap: 2px; }
+            .hologram-citation .quantum-icon { width: 50px; height: 50px; }
+            .hologram-citation .quantum-icon i { font-size: 1.3rem; }
+            .hologram-citation .quantum-badge span { font-size: 0.55rem; letter-spacing: 2px; }
+        }
+
+        .team-section {
+            padding: 60px 0 80px;
+            background: transparent;
+            border-bottom: 1px solid #1F2937;
+            overflow: visible;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-section .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-align: center;
+            background: linear-gradient(135deg, #10B981, #3B82F6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .team-section .section-subtitle {
+            text-align: center;
+            color: #9CA3AF;
+            margin-bottom: 48px;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .team-carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .team-carousel {
+            display: flex;
+            gap: 28px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 48px;
+        }
+
+        .team-carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+        .team-carousel::-webkit-scrollbar-track {
+            background: #1F2937;
+            border-radius: 10px;
+        }
+        .team-carousel::-webkit-scrollbar-thumb {
+            background: #10B981;
+            border-radius: 10px;
+        }
+
+        .member-card {
+            flex: 0 0 260px;
+            scroll-snap-align: center;
+            background: #111827;
+            border-radius: 48px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 28px 20px 32px;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            display: block;
+        }
+
+        .member-card:hover {
+            transform: translateY(-8px);
+            border-color: #10B981;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25);
+        }
+
+        .member-photo-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 18px;
+        }
+
+        .photo-aura {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #10B981, #3B82F6, #8B5CF6, #EC4899, #10B981);
+            animation: auraRotate 4s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes auraRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .member-photo {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #111827;
+            background: #111827;
+            z-index: 1;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover .member-photo img {
+            transform: scale(1.05);
+        }
+
+        .member-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 14px 0 4px;
+            color: #E5E7EB;
+            letter-spacing: 0.5px;
+        }
+
+        .member-role {
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: inline-block;
+            animation: rolePulse 3s ease-in-out infinite;
+            background: linear-gradient(90deg, #10B981, #3B82F6, #8B5CF6, #EC4899, #10B981);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        @keyframes rolePulse {
+            0% { transform: translateY(0px); letter-spacing: 1px; background-position: 0% center; }
+            50% { transform: translateY(-3px); letter-spacing: 2px; background-position: 100% center; }
+            100% { transform: translateY(0px); letter-spacing: 1px; background-position: 0% center; }
+        }
+
+        .member-skills {
+            font-size: 0.7rem;
+            color: #9CA3AF;
+            line-height: 1.4;
+            padding: 0 8px;
+            margin-top: 8px;
+        }
+
+        .carousel-btn {
+            background: #1F2937;
+            border: 1px solid #10B981;
+            border-radius: 60px;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            color: #10B981;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn:hover {
+            background: #10B981;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .join-team-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #6B7280;
+        }
+
+        .join-team-link a {
+            color: #10B981;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        body.light-mode .member-card {
+            background: #FFFFFF;
+            border-color: #E5E7EB;
+        }
+        body.light-mode .member-name {
+            color: #111827;
+        }
+        body.light-mode .team-carousel::-webkit-scrollbar-track {
+            background: #E5E7EB;
+        }
+        body.light-mode .member-photo {
+            border-color: #FFFFFF;
+        }
+
+        @media (max-width: 768px) {
+            .member-card {
+                flex: 0 0 220px;
+                padding: 20px 16px 24px;
+            }
+            .member-photo-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+            .member-photo {
+                width: 90px;
+                height: 90px;
+            }
+            .member-name {
+                font-size: 1rem;
+            }
+            .carousel-btn {
+                width: 38px;
+                height: 38px;
+            }
+            .team-section .section-title {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
@@ -675,9 +1083,12 @@
 
 <header class="header">
     <div class="container">
-        <div class="logo">
-            <h1>GEN Z TECH</h1>
-            <p id="tagline">la tech accessible à tous</p>
+        <div class="logo-container">
+            <img src="images/logogenz.PNG" alt="Gen Z Icon" class="nav-logo-img">
+            <div class="logo-text">
+                <h1>GEN <span class="text-gradient">Z</span> TECH</h1>
+                <p id="tagline">la tech accessible à tous</p>
+            </div>
         </div>
         <div class="desktop-menu">
             <a href="#accueil">Accueil</a>
@@ -783,53 +1194,53 @@
 
     <section id="services" class="section services-section">
         <div class="container">
-            <h2 class="section-title">QUE POUVONS-NOUS FAIRE POUR VOUS ?</h2>
-            <p class="section-subtitle">NOUS RÉSOLVONS DES PROBLÈMES RÉELS</p>
+            <h2 class="section-title" data-key="servicesTitle">QUE POUVONS-NOUS FAIRE POUR VOUS ?</h2>
+            <p class="section-subtitle" data-key="servicesSub">NOUS RÉSOLVONS DES PROBLÈMES RÉELS</p>
             <div class="services-grid" id="servicesGrid">
                 <div class="service-card">
                     <i class="fas fa-globe"></i>
-                    <h3>Site Web</h3>
-                    <p>On vous aide à créer un site web moderne et magnifique pour votre entreprise.</p>
+                    <h3 data-key="svc1Title">Site Web</h3>
+                    <p data-key="svc1Desc">On vous aide à créer un site web moderne et magnifique pour votre entreprise.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-layer-group"></i>
-                    <h3>Application Web</h3>
-                    <p>Applications web personnalisées conçues pour répondre à vos besoins uniques.</p>
+                    <h3 data-key="svc2Title">Application Web</h3>
+                    <p data-key="svc2Desc">Applications web personnalisées conçues pour répondre à vos besoins uniques.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-mobile-alt"></i>
-                    <h3>Application Mobile</h3>
-                    <p>Des applications mobiles belles et performantes pour iOS et Android.</p>
+                    <h3 data-key="svc3Title">Application Mobile</h3>
+                    <p data-key="svc3Desc">Des applications mobiles belles et performantes pour iOS et Android.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-tools"></i>
-                    <h3>Maintenance des Applications</h3>
-                    <p>Nous maîtrisons divers langages de programmation et frameworks.</p>
+                    <h3 data-key="svc4Title">Maintenance des Applications</h3>
+                    <p data-key="svc4Desc">Nous maîtrisons divers langages de programmation et frameworks.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-robot"></i>
-                    <h3>Intelligence Artificielle</h3>
-                    <p>Améliorer votre application : plus interactive, attrayante et intelligente.</p>
+                    <h3 data-key="svc5Title">Intelligence Artificielle</h3>
+                    <p data-key="svc5Desc">Améliorer votre application : plus interactive, attrayante et intelligente.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-chart-line"></i>
-                    <h3>Analyse des Données</h3>
-                    <p>Optimiser votre application avec plus de données pour des choix plus éclairés.</p>
+                    <h3 data-key="svc6Title">Analyse des Données</h3>
+                    <p data-key="svc6Desc">Optimiser votre application avec plus de données pour des choix plus éclairés.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-cogs"></i>
-                    <h3>Automatisation n8n</h3>
-                    <p>Automatisation de vos processus métier avec n8n.</p>
+                    <h3 data-key="svc7Title">Automatisation n8n</h3>
+                    <p data-key="svc7Desc">Automatisation de vos processus métier avec n8n.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-video"></i>
-                    <h3>Sécurité & Caméras</h3>
-                    <p>Installation de caméras, protection de vos données.</p>
+                    <h3 data-key="svc8Title">Sécurité & Caméras</h3>
+                    <p data-key="svc8Desc">Installation de caméras, protection de vos données.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-chart-simple"></i>
-                    <h3>Marketing Digital</h3>
-                    <p>Stratégies digitales pour booster votre visibilité.</p>
+                    <h3 data-key="svc9Title">Marketing Digital</h3>
+                    <p data-key="svc9Desc">Stratégies digitales pour booster votre visibilité.</p>
                 </div>
             </div>
         </div>
@@ -837,23 +1248,23 @@
 
     <div class="values-section">
         <div class="container">
-            <h2 class="section-title">Nos valeurs fondatrices</h2>
-            <p class="section-subtitle">Ce qui nous guide au quotidien</p>
+            <h2 class="section-title" data-key="valuesTitle">Nos valeurs fondatrices</h2>
+            <p class="section-subtitle" data-key="valuesSub">Ce qui nous guide au quotidien</p>
             <div class="values-grid">
                 <div class="value-card">
                     <i class="fas fa-handshake"></i>
-                    <h3>Entraide</h3>
-                    <p>Chez Gen Z, on partage, on s'entraide, on grandit ensemble. Pas de compétition inutile. Le succès de l'un est le succès de tous.</p>
+                    <h3 data-key="val1Title">Entraide</h3>
+                    <p data-key="val1Desc">Chez Gen Z, on partage, on s'entraide, on grandit ensemble. Pas de compétition inutile. Le succès de l'un est le succès de tous.</p>
                 </div>
                 <div class="value-card">
                     <i class="fas fa-lightbulb"></i>
-                    <h3>Innovation</h3>
-                    <p>Nous explorons les nouvelles technologies (IA, mobile, embarqué, blockchain) pour rester toujours en avance et proposer des solutions modernes.</p>
+                    <h3 data-key="val2Title">Innovation</h3>
+                    <p data-key="val2Desc">Nous explorons les nouvelles technologies (IA, mobile, embarqué, blockchain) pour rester toujours en avance et proposer des solutions modernes.</p>
                 </div>
                 <div class="value-card">
                     <i class="fas fa-universal-access"></i>
-                    <h3>Accessibilité</h3>
-                    <p>La tech pour tous, sans barrière de diplôme, de pays ou de niveau. Chaque développeur talentueux mérite sa chance.</p>
+                    <h3 data-key="val3Title">Accessibilité</h3>
+                    <p data-key="val3Desc">La tech pour tous, sans barrière de diplôme, de pays ou de niveau. Chaque développeur talentueux mérite sa chance.</p>
                 </div>
             </div>
         </div>
@@ -861,35 +1272,35 @@
 
     <section id="about" class="section about-section">
         <div class="container">
-            <h2 class="section-title">ABOUT GEN Z</h2>
-            <p class="section-subtitle">Our story, our vision</p>
+            <h2 class="section-title" data-key="aboutTitle">ABOUT GEN Z</h2>
+            <p class="section-subtitle" data-key="aboutSub">Our story, our vision</p>
             <div class="about-grid">
                 <div class="about-text">
-                    <p><strong>Gen Z</strong> est un groupe d'étudiants et de développeurs réunis par la passion du numérique et l'amour du code. Nous rassemblons des développeurs de plusieurs pays, parce que <strong>le code nous unit</strong>.</p>
-                    <p>Avec l'arrivée de l'IA, aujourd'hui tout le monde peut devenir ce qu'il veut… mais pour cela, il faut quelqu'un pour te guider. <strong>Gen Z est née pour aider les gens et leur faciliter la vie</strong> grâce à nos solutions numériques.</p>
-                    <p>Notre académie a déjà formé plus de <strong>1200 étudiants</strong> à travers le monde. Nous organisons des forums tech, des formations en ligne, et accompagnons les jeunes développeurs vers le métier.</p>
+                    <p data-key="aboutP1"><strong>Gen Z</strong> est un groupe d'étudiants et de développeurs réunis par la passion du numérique et l'amour du code. Nous rassemblons des développeurs de plusieurs pays, parce que <strong>le code nous unit</strong>.</p>
+                    <p data-key="aboutP2">Avec l'arrivée de l'IA, aujourd'hui tout le monde peut devenir ce qu'il veut… mais pour cela, il faut quelqu'un pour te guider. <strong>Gen Z est née pour aider les gens et leur faciliter la vie</strong> grâce à nos solutions numériques.</p>
+                    <p data-key="aboutP3">Notre académie a déjà formé plus de <strong>1200 étudiants</strong> à travers le monde. Nous organisons des forums tech, des formations en ligne, et accompagnons les jeunes développeurs vers le métier.</p>
                     <div class="about-quote">
                         <i class="fas fa-quote-left"></i>
-                        <p>Gen Z n'appartient à personne. Gen Z appartient à tout développeur qui veut travailler sur de vrais projets, accumuler des connaissances et trouver des missions freelance.</p>
+                        <p data-key="aboutQuote">Gen Z n'appartient à personne. Gen Z appartient à tout développeur qui veut travailler sur de vrais projets, accumuler des connaissances et trouver des missions freelance.</p>
                     </div>
-                    <p><strong>Notre vision ?</strong> Créer un espace où tu ne te sens plus seul, où tu as des mentors autour de toi, où ce que tu apprends devient un vrai métier, où tu peux gagner ta vie avec le code.</p>
+                    <p data-key="aboutP4"><strong>Notre vision ?</strong> Créer un espace où tu ne te sens plus seul, où tu as des mentors autour de toi, où ce que tu apprends devient un vrai métier, où tu peux gagner ta vie avec le code.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
                         <div class="stat-number">1200+</div>
-                        <div class="stat-label">Étudiants formés</div>
+                        <div class="stat-label" data-key="aboutStat1">Étudiants formés</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">15+</div>
-                        <div class="stat-label">Projets livrés</div>
+                        <div class="stat-label" data-key="aboutStat2">Projets livrés</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">8+</div>
-                        <div class="stat-label">Pays représentés</div>
+                        <div class="stat-label" data-key="aboutStat3">Pays représentés</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">100%</div>
-                        <div class="stat-label">Entraide active</div>
+                        <div class="stat-label" data-key="aboutStat4">Entraide active</div>
                     </div>
                 </div>
             </div>
@@ -924,85 +1335,29 @@
         </div>
     </div>
 
-    <section id="team" class="section">
+    <section id="team" class="section team-section">
         <div class="container">
-            <h2 class="section-title">L'ÉQUIPE GEN Z</h2>
-            <p class="section-subtitle">Des développeurs unis par le code, répartis sur plusieurs pays</p>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Parfait"></div>
-                    <div class="team-info">
-                        <h3>Parfait</h3>
-                        <div class="team-role">Backend & DevOps</div>
-                        <div class="team-lang">Python, Node.js, Docker</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="François"></div>
-                    <div class="team-info">
-                        <h3>François</h3>
-                        <div class="team-role">Frontend & UI/UX</div>
-                        <div class="team-lang">React, Tailwind, Figma</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Bedel"></div>
-                    <div class="team-info">
-                        <h3>Bedel</h3>
-                        <div class="team-role">Data & IA</div>
-                        <div class="team-lang">Python, TensorFlow, SQL</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/89.jpg" alt="Aldiels"></div>
-                    <div class="team-info">
-                        <h3>Aldiels</h3>
-                        <div class="team-role">Mobile (Flutter)</div>
-                        <div class="team-lang">Flutter, Firebase, Dart</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/23.jpg" alt="Djesse"></div>
-                    <div class="team-info">
-                        <h3>Djesse</h3>
-                        <div class="team-role">Sécurité & Backend</div>
-                        <div class="team-lang">Go, PostgreSQL, OWASP</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Arnel"></div>
-                    <div class="team-info">
-                        <h3>Arnel</h3>
-                        <div class="team-role">IA & LLM</div>
-                        <div class="team-lang">LangChain, OpenAI, RAG</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dorcas"></div>
-                    <div class="team-info">
-                        <h3>Dorcas</h3>
-                        <div class="team-role">Community & Product</div>
-                        <div class="team-lang">Growth, No-Code, PM</div>
-                    </div>
-                </div>
-                <div class="team-card">
-                    <div class="team-img"><img src="https://randomuser.me/api/portraits/men/17.jpg" alt="Kitara"></div>
-                    <div class="team-info">
-                        <h3>Kitara Budja</h3>
-                        <div class="team-role">Dev Lead · Founder</div>
-                        <div class="team-lang">Stratégie, Fullstack, IA</div>
-                    </div>
-                </div>
+            <h2 class="section-title">✨ L'ÉQUIPE GEN Z ✨</h2>
+            <p class="section-subtitle">Clique sur un membre pour découvrir son portfolio</p>
+
+            <div class="team-carousel-wrapper">
+                <button class="carousel-btn prev" id="teamPrev"><i class="fas fa-chevron-left"></i></button>
+                <div class="team-carousel" id="teamCarousel"></div>
+                <button class="carousel-btn next" id="teamNext"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <div class="join-team-link">
+                ⚡ Tu veux faire partie de l'équipe ? <a href="#contact">Rejoins Gen Z</a>
             </div>
         </div>
     </section>
 
     <div class="partners-section">
         <div class="container">
-            <h2 class="section-title">Ils soutiennent la jeunesse tech</h2>
-            <p class="section-subtitle">Nos partenaires et contributeurs engagés</p>
+            <h2 class="section-title" data-key="partnersTitle">Ils soutiennent la jeunesse tech</h2>
+            <p class="section-subtitle" data-key="partnersSub">Nos partenaires et contributeurs engagés</p>
             <div class="partners-category">
-                <h3>Nos Sponsors & Partenaires</h3>
+                <h3 data-key="partnersCat1">Nos Sponsors & Partenaires</h3>
                 <div class="partners-grid">
                     <div class="partner-card">
                         <img src="https://placehold.co/120x60/1F2937/10B981?text=Btrust" alt="Btrust">
@@ -1023,7 +1378,7 @@
                 </div>
             </div>
             <div class="partners-category">
-                <h3>Nos Contributeurs</h3>
+                <h3 data-key="partnersCat2">Nos Contributeurs</h3>
                 <div class="partners-grid">
                     <div class="partner-card">
                         <img src="https://placehold.co/120x60/1F2937/10B981?text=BitDevs+GITEGA" alt="BitDevs GITEGA">
@@ -1066,7 +1421,7 @@
                     <p style="font-size: 1.1rem; font-style: italic;" id="quoteText">"Gen Z : la tech accessible à tous, portée par une génération de développeurs unis par le code."</p>
                     <div style="margin-top: 24px;">
                         <p><i class="fab fa-discord"></i> discord.gg/genztech</p>
-                        <p><i class="fab fa-whatsapp"></i> +243 123 456 789</p>
+                        <p><i class="fab fa-whatsapp"></i> +257 670 791 50</p>
                     </div>
                 </div>
             </div>
@@ -1077,8 +1432,8 @@
 <!-- ========== SECTION MISSIONS (candidature vers Gmail) ========== -->
 <div class="missions-section">
     <div class="container">
-        <h2 class="section-title">Missions disponibles</h2>
-        <p class="section-subtitle">Des projets réels pour les membres Gen Z</p>
+        <h2 class="section-title" data-key="missionsTitle">Missions disponibles</h2>
+        <p class="section-subtitle" data-key="missionsSub">Des projets réels pour les membres Gen Z</p>
         <div class="missions-grid">
             <div class="mission-card">
                 <div class="mission-badge">🔥 Nouveau</div>
@@ -1361,55 +1716,55 @@ body.light-mode .process-step p {
 <!-- ========== SECTION FAQ ========== -->
 <section id="faq" class="section faq-section">
     <div class="container">
-        <h2 class="section-title">Foire aux questions</h2>
-        <p class="section-subtitle">Les réponses à vos questions</p>
-        <div class="faq-grid">
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Comment puis-je rejoindre Gen Z ?</span>
-                    <i class="fas fa-chevron-down"></i>
+            <h2 class="section-title" data-key="faqTitle">Foire aux questions</h2>
+            <p class="section-subtitle" data-key="faqSubtitle">Les réponses à vos questions</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-key="faq1q">Comment puis-je rejoindre Gen Z ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-key="faq1a">Vous pouvez remplir le formulaire dans la section Contact ou cliquer sur le bouton WhatsApp dans le footer. Nous vous contacterons dans les 48h.</span>
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    Vous pouvez remplir le formulaire dans la section Contact ou cliquer sur le bouton WhatsApp dans le footer. Nous vous contacterons dans les 48h.
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-key="faq2q">Quels sont les prérequis pour être formé ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-key="faq2a">Aucun prérequis technique. Seule la motivation compte. Nous vous formons à partir de zéro.</span>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-key="faq3q">Combien coûtent vos services ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-key="faq3a">Les prix varient selon le projet. Contactez-nous pour un devis gratuit et personnalisé.</span>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-key="faq4q">Puis-je travailler en freelance avec Gen Z ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-key="faq4a">Oui ! Gen Z est faite pour ça. Rejoignez la communauté et postulez aux projets qui correspondent à votre profil.</span>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span data-key="faq5q">Y a-t-il des frais pour rejoindre Gen Z ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span data-key="faq5a">Non, l'adhésion est totalement gratuite. Gen Z est ouverte à tous les développeurs motivés.</span>
+                    </div>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Quels sont les prérequis pour être formé ?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Aucun prérequis technique. Seule la motivation compte. Nous vous formons à partir de zéro.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Combien coûtent vos services ?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Les prix varient selon le projet. Contactez-nous pour un devis gratuit et personnalisé.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Puis-je travailler en freelance avec Gen Z ?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Oui ! Gen Z est faite pour ça. Rejoignez la communauté et postulez aux projets qui correspondent à votre profil.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    <span>Y a-t-il des frais pour rejoindre Gen Z ?</span>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Non, l'adhésion est totalement gratuite. Gen Z est ouverte à tous les développeurs motivés.
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -1504,8 +1859,8 @@ document.querySelectorAll('.faq-question').forEach(question => {
 <div class="devis-section">
     <div class="container">
         <div class="devis-card">
-            <h2><i class="fas fa-file-invoice-dollar"></i> Demandez un devis gratuit</h2>
-            <p>Décrivez-nous votre projet, nous vous répondons sous 48h.</p>
+            <h2 data-key="devisTitle"><i class="fas fa-file-invoice-dollar"></i> Demandez un devis gratuit</h2>
+            <p data-key="devisDesc">Décrivez-nous votre projet, nous vous répondons sous 48h.</p>
             <form id="devisForm" class="devis-form" action="https://formsubmit.co/kitarabudju5@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="📢 NOUVELLE DEMANDE DE DEVIS - Gen Z Tech">
                 <input type="hidden" name="_captcha" value="false">
@@ -1532,9 +1887,9 @@ document.querySelectorAll('.faq-question').forEach(question => {
                     <input type="number" name="Budget estimé" placeholder="Budget estimé (€/$)" step="100">
                 </div>
                 <textarea name="Description du projet" rows="4" placeholder="Décrivez votre projet en quelques lignes..." required></textarea>
-                <button type="submit" class="devis-btn"><i class="fas fa-envelope"></i> Envoyer la demande</button>
+                <button type="submit" class="devis-btn" data-key="devisBtn"><i class="fas fa-envelope"></i> Envoyer la demande</button>
             </form>
-            <small>✅ Gratuit • Sans engagement • Réponse rapide</small>
+            <small data-key="devisSmall">✅ Gratuit • Sans engagement • Réponse rapide</small>
         </div>
     </div>
 </div>
@@ -1543,15 +1898,15 @@ document.querySelectorAll('.faq-question').forEach(question => {
     <div class="container">
         <div class="newsletter-card">
             <i class="fas fa-envelope-open-text"></i>
-            <h3>Ne rate aucune opportunité</h3>
-            <p>Reçois les projets, formations et offres freelance directement dans ta boîte mail.</p>
+            <h3 data-key="newsletterTitle">Ne rate aucune opportunité</h3>
+            <p data-key="newsletterDesc">Reçois les projets, formations et offres freelance directement dans ta boîte mail.</p>
             <form action="https://formsubmit.co/kitarabudju5@gmail.com" method="POST" class="newsletter-form">
                 <input type="hidden" name="_subject" value="📧 NOUVEL ABONNÉ NEWSLETTER - Gen Z Tech">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="email" name="Email" placeholder="Ton adresse email" required>
-                <button type="submit">S'abonner <i class="fas fa-arrow-right"></i></button>
+                <button type="submit" data-key="newsletterBtn">S'abonner <i class="fas fa-arrow-right"></i></button>
             </form>
-            <small>Aucun spam, désinscription en 1 clic.</small>
+            <small data-key="newsletterSmall">Aucun spam, désinscription en 1 clic.</small>
         </div>
     </div>
 </div>
@@ -1560,18 +1915,18 @@ document.querySelectorAll('.faq-question').forEach(question => {
     <div class="container">
         <div class="footer-logo">
             <h1>GEN Z TECH</h1>
-            <p>La tech accessible à tous, portée par une génération de développeurs unis par le code.</p>
+            <p data-key="footerDesc">La tech accessible à tous, portée par une génération de développeurs unis par le code.</p>
         </div>
         <div class="footer-grid">
             <div class="footer-col">
-                <h3>📱 Rejoindre Gen Z</h3>
-                <p>Intègre notre communauté WhatsApp : projets réels, entraide, freelance.</p>
+                <h3 data-key="footerJoinTitle">📱 Rejoindre Gen Z</h3>
+                <p data-key="footerJoinDesc">Intègre notre communauté WhatsApp : projets réels, entraide, freelance.</p>
                 <a href="https://chat.whatsapp.com/CNsgwlVRvbh8s34nnPxfb5?mode=gi_t" target="_blank" class="footer-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Rejoindre le groupe
+                    <i class="fab fa-whatsapp"></i> <span data-key="footerJoinBtn">Rejoindre le groupe</span>
                 </a>
             </div>
             <div class="footer-col">
-                <h3>🤝 Nos partenaires</h3>
+                <h3 data-key="footerPartnersTitle">🤝 Nos partenaires</h3>
                 <ul class="partner-list">
                     <li><i class="fas fa-check-circle"></i> Kithub Media</li>
                     <li><i class="fas fa-check-circle"></i> Borse</li>
@@ -1582,18 +1937,18 @@ document.querySelectorAll('.faq-question').forEach(question => {
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>📜 Règles Gen Z</h3>
+                <h3 data-key="footerRulesTitle">📜 Règles Gen Z</h3>
                 <ul class="rules-list">
-                    <li><i class="fas fa-handshake"></i> Entraide et partage de connaissances</li>
-                    <li><i class="fas fa-star-of-life"></i> Respect des leads tech et des clients</li>
-                    <li><i class="fas fa-lock"></i> Confidentialité des projets</li>
-                    <li><i class="fas fa-rocket"></i> Engagement sur les missions acceptées</li>
+                    <li><i class="fas fa-handshake"></i> <span data-key="rule1">Entraide et partage de connaissances</span></li>
+                    <li><i class="fas fa-star-of-life"></i> <span data-key="rule2">Respect des leads tech et des clients</span></li>
+                    <li><i class="fas fa-lock"></i> <span data-key="rule3">Confidentialité des projets</span></li>
+                    <li><i class="fas fa-rocket"></i> <span data-key="rule4">Engagement sur les missions acceptées</span></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>⚖️ Légal</h3>
+                <h3 data-key="footerLegalTitle">⚖️ Légal</h3>
                 <ul>
-                    <li><a href="#" id="legalLinkFooter">Mentions légales</a></li>
+                    <li><a href="#" id="legalLinkFooter" data-key="footerLegalLink">Mentions légales</a></li>
                 </ul>
             </div>
         </div>
@@ -1602,6 +1957,33 @@ document.querySelectorAll('.faq-question').forEach(question => {
             <a href="#"><i class="fab fa-discord"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="https://chat.whatsapp.com/CNsgwlVRvbh8s34nnPxfb5?mode=gi_t" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="hologram-citation" id="hologramCitation">
+            <canvas class="starfield" id="starfieldCanvas"></canvas>
+            <div class="laser-scanner"></div>
+            <div class="hologram-content">
+                <div class="quantum-icon">
+                    <div class="quantum-ring"></div>
+                    <i class="fas fa-infinity"></i>
+                </div>
+                <div class="glitch-wrapper">
+                    <h2 class="hologram-text" id="animatedText">Si j'ai vu plus loin,<br>c'est parce que je me suis tenu<br>sur les épaules de géants.</h2>
+                </div>
+                <div class="author-cosmos">
+                    <div class="cosmos-name" id="cosmosName">
+                        <span class="name-particle">I</span><span class="name-particle">s</span><span class="name-particle">a</span><span class="name-particle">a</span><span class="name-particle">c</span>
+                        <span style="width: 12px;"></span>
+                        <span class="name-particle">N</span><span class="name-particle">e</span><span class="name-particle">w</span><span class="name-particle">t</span><span class="name-particle">o</span><span class="name-particle">n</span>
+                    </div>
+                    <div class="cosmos-trail"></div>
+                </div>
+                <div class="quantum-badge">
+                    <div class="quantum-energy"></div>
+                    <span>✦ GEN Z QUANTUM LEGACY ✦</span>
+                    <div class="quantum-energy"></div>
+                </div>
+            </div>
+            <div class="heat-distortion"></div>
         </div>
         <div class="footer-copyright">
             <p>© 2025 Gen Z Tech — Tous droits réservés</p>
@@ -1640,13 +2022,54 @@ document.querySelectorAll('.faq-question').forEach(question => {
             btnStart: "Démarrer un projet", btnServices: "Nos services",
             testimonials: [{ text: "Gen Z a transformé notre idée en une application mobile incroyable. L'équipe est réactive et professionnelle.", author: "— Marc D." }, { text: "Grâce à leur formation, j'ai pu décrocher mon premier emploi de développeur. Merci Gen Z !", author: "— Sarah K." }, { text: "Un accompagnement technique de qualité. Je recommande vivement leurs services.", author: "— Jean-Paul L." }],
             process: [{ num: "1", title: "Prospection", desc: "Kitara trouve des entreprises et signe les contrats." }, { num: "2", title: "Brief équipe", desc: "On revient vers la communauté avec les besoins." }, { num: "3", title: "Sélection", desc: "Tu es choisi selon ton profil et ta motivation." }, { num: "4", title: "Lead Tech", desc: "Tu intègres une équipe avec un mentor technique." }, { num: "5", title: "Réalisation", desc: "Tu bosses, tu apprends et tu es payé." }, { num: "6", title: "Livraison + CV", desc: "Projet livré, expérience validée, argent gagné." }],
-            faq: [{ q: "Comment puis-je rejoindre Gen Z ?", a: "Vous pouvez remplir le formulaire dans la section Contact. Nous vous contacterons dans les 48h." }, { q: "Quels sont les prérequis pour être formé ?", a: "Aucun prérequis technique. Seule la motivation compte. Nous vous formons à partir de zéro." }, { q: "Combien coûtent vos services ?", a: "Les prix varient selon le projet. Contactez-nous pour un devis gratuit et personnalisé." }, { q: "Puis-je travailler en freelance avec Gen Z ?", a: "Oui ! Gen Z est faite pour ça. Rejoignez la communauté et postulez aux projets qui correspondent à votre profil." }],
+            faq: [{ q: "Comment puis-je rejoindre Gen Z ?", a: "Vous pouvez remplir le formulaire dans la section Contact. Nous vous contacterons dans les 48h." }, { q: "Quels sont les prérequis pour être formé ?", a: "Aucun prérequis technique. Seule la motivation compte. Nous vous formons à partir de zéro." }, { q: "Combien coûtent vos services ?", a: "Les prix varient selon le projet. Contactez-nous pour un devis gratuit et personnalisé." }, { q: "Puis-je travailler en freelance avec Gen Z ?", a: "Oui ! Gen Z est faite pour ça. Rejoignez la communauté et postulez aux projets qui correspondent à votre profil." }, { q: "Y a-t-il des frais pour rejoindre Gen Z ?", a: "Non, l'adhésion est totalement gratuite. Gen Z est ouverte à tous les développeurs motivés." }],
             contactTitle: "Discutons de votre projet", send: "Envoyer", quote: '"Gen Z : la tech accessible à tous, portée par une génération de développeurs unis par le code."',
             copyright: "© 2025 Gen Z Tech — la tech accessible à tous",
             counter1: "Étudiants formés", counter2: "Projets livrés", counter3: "Pays représentés", counter4: "Satisfaction client",
             processTitle: "COMMENT GEN Z FONCTIONNE", processSubtitle: "De la signature du contrat à ta rémunération",
             faqTitle: "Foire aux questions", faqSubtitle: "Les réponses à vos questions",
-            testimonialsTitle: "Ils nous font confiance"
+            faq1q: "Comment puis-je rejoindre Gen Z ?", faq1a: "Vous pouvez remplir le formulaire dans la section Contact ou cliquer sur le bouton WhatsApp dans le footer. Nous vous contacterons dans les 48h.",
+            faq2q: "Quels sont les prérequis pour être formé ?", faq2a: "Aucun prérequis technique. Seule la motivation compte. Nous vous formons à partir de zéro.",
+            faq3q: "Combien coûtent vos services ?", faq3a: "Les prix varient selon le projet. Contactez-nous pour un devis gratuit et personnalisé.",
+            faq4q: "Puis-je travailler en freelance avec Gen Z ?", faq4a: "Oui ! Gen Z est faite pour ça. Rejoignez la communauté et postulez aux projets qui correspondent à votre profil.",
+            faq5q: "Y a-t-il des frais pour rejoindre Gen Z ?", faq5a: "Non, l'adhésion est totalement gratuite. Gen Z est ouverte à tous les développeurs motivés.",
+            testimonialsTitle: "Ils nous font confiance",
+            servicesTitle: "QUE POUVONS-NOUS FAIRE POUR VOUS ?", servicesSub: "NOUS RÉSOLVONS DES PROBLÈMES RÉELS",
+            svc1Title: "Site Web", svc1Desc: "On vous aide à créer un site web moderne et magnifique pour votre entreprise.",
+            svc2Title: "Application Web", svc2Desc: "Applications web personnalisées conçues pour répondre à vos besoins uniques.",
+            svc3Title: "Application Mobile", svc3Desc: "Des applications mobiles belles et performantes pour iOS et Android.",
+            svc4Title: "Maintenance des Applications", svc4Desc: "Nous maîtrisons divers langages de programmation et frameworks.",
+            svc5Title: "Intelligence Artificielle", svc5Desc: "Améliorer votre application : plus interactive, attrayante et intelligente.",
+            svc6Title: "Analyse des Données", svc6Desc: "Optimiser votre application avec plus de données pour des choix plus éclairés.",
+            svc7Title: "Automatisation n8n", svc7Desc: "Automatisation de vos processus métier avec n8n.",
+            svc8Title: "Sécurité & Caméras", svc8Desc: "Installation de caméras, protection de vos données.",
+            svc9Title: "Marketing Digital", svc9Desc: "Stratégies digitales pour booster votre visibilité.",
+            valuesTitle: "Nos valeurs fondatrices", valuesSub: "Ce qui nous guide au quotidien",
+            val1Title: "Entraide", val1Desc: "Chez Gen Z, on partage, on s'entraide, on grandit ensemble. Pas de compétition inutile. Le succès de l'un est le succès de tous.",
+            val2Title: "Innovation", val2Desc: "Nous explorons les nouvelles technologies (IA, mobile, embarqué, blockchain) pour rester toujours en avance et proposer des solutions modernes.",
+            val3Title: "Accessibilité", val3Desc: "La tech pour tous, sans barrière de diplôme, de pays ou de niveau. Chaque développeur talentueux mérite sa chance.",
+            aboutTitle: "ABOUT GEN Z", aboutSub: "Our story, our vision",
+            aboutP1: "Gen Z est un groupe d'étudiants et de développeurs réunis par la passion du numérique et l'amour du code. Nous rassemblons des développeurs de plusieurs pays, parce que le code nous unit.",
+            aboutP2: "Avec l'arrivée de l'IA, aujourd'hui tout le monde peut devenir ce qu'il veut… mais pour cela, il faut quelqu'un pour te guider. Gen Z est née pour aider les gens et leur faciliter la vie grâce à nos solutions numériques.",
+            aboutP3: "Notre académie a déjà formé plus de 1200 étudiants à travers le monde. Nous organisons des forums tech, des formations en ligne, et accompagnons les jeunes développeurs vers le métier.",
+            aboutQuote: "Gen Z n'appartient à personne. Gen Z appartient à tout développeur qui veut travailler sur de vrais projets, accumuler des connaissances et trouver des missions freelance.",
+            aboutP4: "Notre vision ? Créer un espace où tu ne te sens plus seul, où tu as des mentors autour de toi, où ce que tu apprends devient un vrai métier, où tu peux gagner ta vie avec le code.",
+            aboutStat1: "Étudiants formés", aboutStat2: "Projets livrés", aboutStat3: "Pays représentés", aboutStat4: "Entraide active",
+            teamTitle: "L'ÉQUIPE GEN Z", teamSub: "Des développeurs unis par le code, répartis sur plusieurs pays",
+            teamRole1: "Backend & DevOps", teamRole2: "Frontend & UI/UX", teamRole3: "Data & IA", teamRole4: "Mobile (Flutter)",
+            teamRole5: "Sécurité & Backend", teamRole6: "IA & LLM", teamRole7: "Community & Product", teamRole8: "Dev Lead · Founder",
+            partnersTitle: "Ils soutiennent la jeunesse tech", partnersSub: "Nos partenaires et contributeurs engagés",
+            partnersCat1: "Nos Sponsors & Partenaires", partnersCat2: "Nos Contributeurs",
+            missionsTitle: "Missions disponibles", missionsSub: "Des projets réels pour les membres Gen Z",
+            devisTitle: "Demandez un devis gratuit", devisDesc: "Décrivez-nous votre projet, nous vous répondons sous 48h.",
+            devisBtn: "Envoyer la demande", devisSmall: "✅ Gratuit • Sans engagement • Réponse rapide",
+            newsletterTitle: "Ne rate aucune opportunité", newsletterDesc: "Reçois les projets, formations et offres freelance directement dans ta boîte mail.",
+            newsletterBtn: "S'abonner", newsletterSmall: "Aucun spam, désinscription en 1 clic.",
+            footerDesc: "La tech accessible à tous, portée par une génération de développeurs unis par le code.",
+            footerJoinTitle: "📱 Rejoindre Gen Z", footerJoinDesc: "Intègre notre communauté WhatsApp : projets réels, entraide, freelance.", footerJoinBtn: "Rejoindre le groupe",
+            footerPartnersTitle: "🤝 Nos partenaires", footerRulesTitle: "📜 Règles Gen Z",
+            rule1: "Entraide et partage de connaissances", rule2: "Respect des leads tech et des clients", rule3: "Confidentialité des projets", rule4: "Engagement sur les missions acceptées",
+            footerLegalTitle: "⚖️ Légal", footerLegalLink: "Mentions légales"
         },
         en: {
             tagline: "tech accessible to all", "nav-home": "Home", "nav-services": "Services", "nav-about": "About", "nav-team": "Team", "nav-contact": "Contact", "theme-dark": "Dark theme", "theme-light": "Light theme",
@@ -1655,12 +2078,53 @@ document.querySelectorAll('.faq-question').forEach(question => {
             btnStart: "Start a project", btnServices: "Our services",
             testimonials: [{ text: "Gen Z transformed our idea into an incredible mobile app. The team is responsive and professional.", author: "— Marc D." }, { text: "Thanks to their training, I got my first developer job. Thank you Gen Z!", author: "— Sarah K." }, { text: "Quality technical support. I highly recommend their services.", author: "— Jean-Paul L." }],
             process: [{ num: "1", title: "Prospecting", desc: "Kitara finds companies and signs contracts." }, { num: "2", title: "Team Brief", desc: "We come back to the community with needs." }, { num: "3", title: "Selection", desc: "You're chosen based on your profile and motivation." }, { num: "4", title: "Lead Tech", desc: "You join a team with a technical mentor." }, { num: "5", title: "Development", desc: "You work, learn and get paid." }, { num: "6", title: "Delivery + CV", desc: "Project delivered, experience validated, money earned." }],
-            faq: [{ q: "How can I join Gen Z?", a: "Fill out the form in the Contact section. We will contact you within 48 hours." }, { q: "What are the prerequisites for training?", a: "No technical prerequisites. Only motivation matters. We train you from scratch." }, { q: "How much do your services cost?", a: "Prices vary by project. Contact us for a free personalized quote." }, { q: "Can I work as a freelancer with Gen Z?", a: "Yes! Gen Z is made for that. Join the community and apply for projects that match your profile." }],
+            faq: [{ q: "How can I join Gen Z?", a: "Fill out the form in the Contact section. We will contact you within 48 hours." }, { q: "What are the prerequisites for training?", a: "No technical prerequisites. Only motivation matters. We train you from scratch." }, { q: "How much do your services cost?", a: "Prices vary by project. Contact us for a free personalized quote." }, { q: "Can I work as a freelancer with Gen Z?", a: "Yes! Gen Z is made for that. Join the community and apply for projects that match your profile." }, { q: "Are there any fees to join Gen Z?", a: "No, membership is completely free. Gen Z is open to all motivated developers." }],
             contactTitle: "Let's discuss your project", send: "Send", quote: '"Gen Z: tech accessible to all, driven by a generation of developers united by code."',
             copyright: "© 2025 Gen Z Tech — tech accessible to all",
             counter1: "Students trained", counter2: "Projects delivered", counter3: "Countries", counter4: "Satisfaction",
             processTitle: "HOW GEN Z WORKS", processSubtitle: "From contract signing to your payment", faqTitle: "FAQ", faqSubtitle: "Answers to your questions",
-            testimonialsTitle: "They trust us"
+            faq1q: "How can I join Gen Z?", faq1a: "Fill out the form in the Contact section or click the WhatsApp button in the footer. We will contact you within 48 hours.",
+            faq2q: "What are the prerequisites for training?", faq2a: "No technical prerequisites. Only motivation counts. We train you from scratch.",
+            faq3q: "How much do your services cost?", faq3a: "Prices vary by project. Contact us for a free personalized quote.",
+            faq4q: "Can I work as a freelancer with Gen Z?", faq4a: "Yes! Gen Z is made for that. Join the community and apply for projects that match your profile.",
+            faq5q: "Are there any fees to join Gen Z?", faq5a: "No, membership is completely free. Gen Z is open to all motivated developers.",
+            testimonialsTitle: "They trust us",
+            servicesTitle: "WHAT CAN WE DO FOR YOU?", servicesSub: "WE SOLVE REAL PROBLEMS",
+            svc1Title: "Website", svc1Desc: "We help you create a modern, beautiful website for your business.",
+            svc2Title: "Web Application", svc2Desc: "Custom web applications designed to meet your unique needs.",
+            svc3Title: "Mobile Application", svc3Desc: "Beautiful and high-performance mobile apps for iOS and Android.",
+            svc4Title: "App Maintenance", svc4Desc: "We master various programming languages and frameworks.",
+            svc5Title: "Artificial Intelligence", svc5Desc: "Make your app more interactive, attractive and intelligent.",
+            svc6Title: "Data Analysis", svc6Desc: "Optimize your app with data-driven insights for better decisions.",
+            svc7Title: "n8n Automation", svc7Desc: "Automate your business processes with n8n.",
+            svc8Title: "Security & Cameras", svc8Desc: "Camera installation, data protection solutions.",
+            svc9Title: "Digital Marketing", svc9Desc: "Digital strategies to boost your visibility.",
+            valuesTitle: "Our Founding Values", valuesSub: "What guides us every day",
+            val1Title: "Mutual Aid", val1Desc: "At Gen Z, we share, help each other, and grow together. No useless competition. One's success is everyone's success.",
+            val2Title: "Innovation", val2Desc: "We explore new technologies (AI, mobile, embedded, blockchain) to stay ahead and offer modern solutions.",
+            val3Title: "Accessibility", val3Desc: "Tech for everyone, without barriers of degree, country or level. Every talented developer deserves a chance.",
+            aboutTitle: "ABOUT GEN Z", aboutSub: "Our story, our vision",
+            aboutP1: "Gen Z is a group of students and developers united by a passion for digital technology and the love of code. We bring together developers from several countries, because code unites us.",
+            aboutP2: "With the arrival of AI, today anyone can become what they want... but for that, you need someone to guide you. Gen Z was born to help people and make their lives easier through our digital solutions.",
+            aboutP3: "Our academy has already trained over 1200 students worldwide. We organize tech forums, online training, and support young developers in their careers.",
+            aboutQuote: "Gen Z belongs to no one. Gen Z belongs to every developer who wants to work on real projects, build knowledge, and find freelance missions.",
+            aboutP4: "Our vision? Create a space where you no longer feel alone, where you have mentors around you, where what you learn becomes a real profession, where you can earn a living with code.",
+            aboutStat1: "Students trained", aboutStat2: "Projects delivered", aboutStat3: "Countries", aboutStat4: "Active mutual aid",
+            teamTitle: "THE GEN Z TEAM", teamSub: "Developers united by code, spread across several countries",
+            teamRole1: "Backend & DevOps", teamRole2: "Frontend & UI/UX", teamRole3: "Data & AI", teamRole4: "Mobile (Flutter)",
+            teamRole5: "Security & Backend", teamRole6: "AI & LLM", teamRole7: "Community & Product", teamRole8: "Dev Lead · Founder",
+            partnersTitle: "They support tech youth", partnersSub: "Our partners and committed contributors",
+            partnersCat1: "Our Sponsors & Partners", partnersCat2: "Our Contributors",
+            missionsTitle: "Available Missions", missionsSub: "Real projects for Gen Z members",
+            devisTitle: "Request a free quote", devisDesc: "Describe your project, we'll respond within 48 hours.",
+            devisBtn: "Send request", devisSmall: "✅ Free • No obligation • Quick response",
+            newsletterTitle: "Don't miss any opportunity", newsletterDesc: "Receive projects, training and freelance offers directly in your inbox.",
+            newsletterBtn: "Subscribe", newsletterSmall: "No spam, unsubscribe in 1 click.",
+            footerDesc: "Tech accessible to all, driven by a generation of developers united by code.",
+            footerJoinTitle: "📱 Join Gen Z", footerJoinDesc: "Join our WhatsApp community: real projects, mutual aid, freelance.", footerJoinBtn: "Join the group",
+            footerPartnersTitle: "🤝 Our partners", footerRulesTitle: "📜 Gen Z Rules",
+            rule1: "Mutual aid and knowledge sharing", rule2: "Respect for tech leads and clients", rule3: "Project confidentiality", rule4: "Commitment to accepted missions",
+            footerLegalTitle: "⚖️ Legal", footerLegalLink: "Legal notices"
         },
         sw: {
             tagline: "teknolojia inapatikana kwa wote", "nav-home": "Nyumbani", "nav-services": "Huduma", "nav-about": "Kuhusu", "nav-team": "Timu", "nav-contact": "Wasiliana", "theme-dark": "Mandhari nyeusi", "theme-light": "Mandhari nyepesi",
@@ -1669,12 +2133,53 @@ document.querySelectorAll('.faq-question').forEach(question => {
             btnStart: "Anza mradi", btnServices: "Huduma zetu",
             testimonials: [{ text: "Gen Z ilibadilisha wazo letu kuwa programu nzuri ya simu. Timu inajibu na ni ya kitaalamu.", author: "— Marc D." }, { text: "Shukrani kwa mafunzo yao, nilipata kazi yangu ya kwanza ya utengenezaji. Asante Gen Z!", author: "— Sarah K." }, { text: "Usaidizi wa kiufundi wa hali ya juu. Ninapendekeza sana huduma zao.", author: "— Jean-Paul L." }],
             process: [{ num: "1", title: "Utafutaji", desc: "Kitara hupata makampuni na kutia saini mikataba." }, { num: "2", title: "Taarifa kwa Timu", desc: "Tunarudi kwa jumuiya na mahitaji." }, { num: "3", title: "Uteuzi", desc: "Unachaguliwa kulingana na wasifu na motisha yako." }, { num: "4", title: "Kiongozi Tech", desc: "Unaungana na timu iliyo na mshauri wa kiufundi." }, { num: "5", title: "Utengenezaji", desc: "Unafanya kazi, unajifunza na unalipwa." }, { num: "6", title: "Uwasilishaji + CV", desc: "Mradi umewasilishwa, uzoefu umethibitishwa, pesa umepata." }],
-            faq: [{ q: "Ninawezaje kujiunga na Gen Z?", a: "Jaza fomu katika sehemu ya Wasiliana. Tutawasiliana nawe ndani ya masaa 48." }, { q: "Je, kuna mahitaji yoyote ya kujiunga na mafunzo?", a: "Hakuna mahitaji ya kiufundi. Motisha tu ndio inayohesabu. Tunakufundisha kuanzia mwanzo." }, { q: "Huduma zenu zinagharimu kiasi gani?", a: "Bei hutofautiana kulingana na mradi. Wasiliana nasi kwa makadirio ya bure na ya kibinafsi." }, { q: "Je, ninaweza kufanya kazi ya kujitegemea na Gen Z?", a: "Ndio! Gen Z imeundwa kwa ajili hiyo. Jiunge na jumuiya na utume maombi kwa miradi inayolingana na wasifu wako." }],
+            faq: [{ q: "Ninawezaje kujiunga na Gen Z?", a: "Jaza fomu katika sehemu ya Wasiliana. Tutawasiliana nawe ndani ya masaa 48." }, { q: "Je, kuna mahitaji yoyote ya kujiunga na mafunzo?", a: "Hakuna mahitaji ya kiufundi. Motisha tu ndio inayohesabu. Tunakufundisha kuanzia mwanzo." }, { q: "Huduma zenu zinagharimu kiasi gani?", a: "Bei hutofautiana kulingana na mradi. Wasiliana nasi kwa makadirio ya bure na ya kibinafsi." }, { q: "Je, ninaweza kufanya kazi ya kujitegemea na Gen Z?", a: "Ndio! Gen Z imeundwa kwa ajili hiyo. Jiunge na jumuiya na utume maombi kwa miradi inayolingana na wasifu wako." }, { q: "Je, kuna ada ya kujiunga na Gen Z?", a: "Hapana, uanachama ni bure kabisa. Gen Z iko wazi kwa watengenezaji wote wenye motisha." }],
             contactTitle: "Tujadili mradi wako", send: "Tuma", quote: '"Gen Z: teknolojia inapatikana kwa wote, inayoendeshwa na kizazi cha watengenezaji walioungana kwa kodi."',
             copyright: "© 2025 Gen Z Tech — teknolojia inapatikana kwa wote",
             counter1: "Wanafunzi waliofunzwa", counter2: "Miradi iliyowasilishwa", counter3: "Nchi", counter4: "Kuridhika",
             processTitle: "GEN Z INAFANYA KAZI VIPI", processSubtitle: "Kutoka saini ya mkataba hadi malipo yako", faqTitle: "Maswali", faqSubtitle: "Majibu ya maswali yako",
-            testimonialsTitle: "Wanatuamini"
+            faq1q: "Ninawezaje kujiunga na Gen Z?", faq1a: "Jaza fomu katika sehemu ya Wasiliana au bofya kitufe cha WhatsApp kwenye footer. Tutawasiliana nawe ndani ya masaa 48.",
+            faq2q: "Je, kuna mahitaji yoyote ya kujiunga na mafunzo?", faq2a: "Hakuna mahitaji ya kiufundi. Motisha tu ndio inayohesabu. Tunakufundisha kuanzia mwanzo.",
+            faq3q: "Huduma zenu zinagharimu kiasi gani?", faq3a: "Bei hutofautiana kulingana na mradi. Wasiliana nasi kwa makadirio ya bure na ya kibinafsi.",
+            faq4q: "Je, ninaweza kufanya kazi ya kujitegemea na Gen Z?", faq4a: "Ndio! Gen Z imeundwa kwa ajili hiyo. Jiunge na jumuiya na utume maombi kwa miradi inayolingana na wasifu wako.",
+            faq5q: "Je, kuna ada ya kujiunga na Gen Z?", faq5a: "Hapana, uanachama ni bure kabisa. Gen Z iko wazi kwa watengenezaji wote wenye motisha.",
+            testimonialsTitle: "Wanatuamini",
+            servicesTitle: "TUNAWEZA KUKUFANYIA NINI?", servicesSub: "TUNATATUA MATATIZO HALISI",
+            svc1Title: "Tovuti", svc1Desc: "Tunakusaidia kuunda tovuti ya kisasa na nzuri kwa biashara yako.",
+            svc2Title: "Programu ya Wavuti", svc2Desc: "Programu za wavuti zilizobinafsishwa kukidhi mahitaji yako ya kipekee.",
+            svc3Title: "Programu ya Simu", svc3Desc: "Programu nzuri na zenye utendaji wa juu kwa iOS na Android.",
+            svc4Title: "Matengenezo ya Programu", svc4Desc: "Tunajua lugha mbalimbali za programu na mifumo.",
+            svc5Title: "Akili Bandia", svc5Desc: "Boresha programu yako: iwe shirikishi zaidi, yenye kuvutia na yenye akili.",
+            svc6Title: "Uchambuzi wa Data", svc6Desc: "Boresha programu yako kwa data zaidi kwa maamuzi bora.",
+            svc7Title: "Uendeshaji n8n", svc7Desc: "Endesha kiotomatiki michakato yako ya biashara kwa n8n.",
+            svc8Title: "Usalama & Kamera", svc8Desc: "Ufungaji wa kamera, ulinzi wa data zako.",
+            svc9Title: "Masoko ya Dijitali", svc9Desc: "Mikakati ya kidijitali kuongeza mwonekano wako.",
+            valuesTitle: "Maadili Yetu ya Msingi", valuesSub: "Yale yanayotuongoza kila siku",
+            val1Title: "Kusaidiana", val1Desc: "Kwenye Gen Z, tunashirikiana, kusaidiana, na kukua pamoja. Hakuna ushindani usio na maana. Mafanikio ya mmoja ni mafanikio ya wote.",
+            val2Title: "Ubunifu", val2Desc: "Tunachunguza teknolojia mpya (AI, simu, iliyopachikwa, blockchain) ili kuwa mbele na kutoa suluhu za kisasa.",
+            val3Title: "Upatikanaji", val3Desc: "Teknolojia kwa wote, bila vikwazo vya shahada, nchi au kiwango. Kila mtengenezaji mwenye kipaji anastahili nafasi.",
+            aboutTitle: "ABOUT GEN Z", aboutSub: "Hadithi yetu, maono yetu",
+            aboutP1: "Gen Z ni kikundi cha wanafunzi na watengenezaji walioungana na mapenzi ya teknolojia na kodi. Tunakusanya watengenezaji kutoka nchi mbalimbali, kwa sababu kodi inatuunganisha.",
+            aboutP2: "Kwa kuja kwa AI, leo kila mtu anaweza kuwa kile anachotaka... lakini kwa hilo, unahitaji mtu wa kukuongoza. Gen Z ilizaliwa kusaidia watu na kurahisisha maisha yao kupitia suluhu zetu za kidijitali.",
+            aboutP3: "Akademia yetu tayari imefunza zaidi ya wanafunzi 1200 duniani kote. Tunaandaa mabaraza ya tech, mafunzo mtandaoni, na kusaidia watengenezaji wachanga kuingia kazini.",
+            aboutQuote: "Gen Z si ya mtu yeyote. Gen Z ni ya kila mtengenezaji anayetaka kufanya kazi kwenye miradi halisi, kujenga ujuzi, na kupata kazi za kujitegemea.",
+            aboutP4: "Maono yetu? Kuunda nafasi ambapo hujisikii tena peke yako, una washauri karibu nawe, kile unachojifunza kinakuwa kazi halisi, unaweza kupata riziki kwa kodi.",
+            aboutStat1: "Wanafunzi waliofunzwa", aboutStat2: "Miradi iliyowasilishwa", aboutStat3: "Nchi", aboutStat4: "Kusaidiana kwa vitendo",
+            teamTitle: "TIMU YA GEN Z", teamSub: "Watengenezaji walioungana na kodi, wameenea nchi mbalimbali",
+            teamRole1: "Backend & DevOps", teamRole2: "Frontend & UI/UX", teamRole3: "Data & AI", teamRole4: "Simu (Flutter)",
+            teamRole5: "Usalama & Backend", teamRole6: "AI & LLM", teamRole7: "Jamii & Bidhaa", teamRole8: "Kiongozi Dev · Mwanzilishi",
+            partnersTitle: "Wanaunga mkono vijana wa tech", partnersSub: "Washirika wetu na wachangiaji waliojitolea",
+            partnersCat1: "Wafadhili Wetu & Washirika", partnersCat2: "Wachangiaji Wetu",
+            missionsTitle: "Kazi Zinazopatikana", missionsSub: "Miradi halisi kwa wanachama wa Gen Z",
+            devisTitle: "Omba makadirio ya bure", devisDesc: "Eleza mradi wako, tutakujibu ndani ya masaa 48.",
+            devisBtn: "Tuma ombi", devisSmall: "✅ Bure • Hakuna wajibu • Jibu la haraka",
+            newsletterTitle: "Usikose fursa yoyote", newsletterDesc: "Pokea miradi, mafunzo na ofa za kujitegemea moja kwa moja kwenye barua pepe yako.",
+            newsletterBtn: "Jisajili", newsletterSmall: "Hakuna spam, jiondoe kwa mbofyo 1.",
+            footerDesc: "Teknolojia inapatikana kwa wote, inayoendeshwa na kizazi cha watengenezaji walioungana na kodi.",
+            footerJoinTitle: "📱 Jiunge na Gen Z", footerJoinDesc: "Jiunge na jamii yetu ya WhatsApp: miradi halisi, kusaidiana, kujitegemea.", footerJoinBtn: "Jiunge na kikundi",
+            footerPartnersTitle: "🤝 Washirika wetu", footerRulesTitle: "📜 Sheria za Gen Z",
+            rule1: "Kusaidiana na kushiriki maarifa", rule2: "Kuheshimu viongozi tech na wateja", rule3: "Usiri wa miradi", rule4: "Kujitolea kwa kazi zilizokubaliwa",
+            footerLegalTitle: "⚖️ Kisheria", footerLegalLink: "Maelezo ya kisheria"
         },
         zh: {
             tagline: "技术人人可及", "nav-home": "首页", "nav-services": "服务", "nav-about": "关于", "nav-team": "团队", "nav-contact": "联系", "theme-dark": "深色主题", "theme-light": "浅色主题",
@@ -1683,12 +2188,53 @@ document.querySelectorAll('.faq-question').forEach(question => {
             btnStart: "启动项目", btnServices: "我们的服务",
             testimonials: [{ text: "Gen Z将我们的想法变成了一个令人难以置信的移动应用。团队反应迅速且专业。", author: "— Marc D." }, { text: "感谢他们的培训，我得到了我的第一份开发工作。谢谢Gen Z！", author: "— Sarah K." }, { text: "高质量的技术支持。我强烈推荐他们的服务。", author: "— Jean-Paul L." }],
             process: [{ num: "1", title: "寻找客户", desc: "Kitara寻找公司并签署合同。" }, { num: "2", title: "团队简报", desc: "我们带着需求回到社区。" }, { num: "3", title: "筛选", desc: "根据您的资料和动机选择您。" }, { num: "4", title: "技术负责人", desc: "您加入一个有技术导师的团队。" }, { num: "5", title: "开发", desc: "您工作、学习并获得报酬。" }, { num: "6", title: "交付 + 简历", desc: "项目交付，经验验证，赚取收入。" }],
-            faq: [{ q: "我如何加入Gen Z？", a: "填写联系部分的表格。我们将在48小时内与您联系。" }, { q: "培训有什么先决条件？", a: "没有技术先决条件。只有动力重要。我们从零开始培训您。" }, { q: "你们的服务费用是多少？", a: "价格因项目而异。联系我们获取免费个性化报价。" }, { q: "我可以作为自由职业者与Gen Z合作吗？", a: "是的！Gen Z就是为了这个而存在的。加入社区，申请符合您资料的项目。" }],
+            faq: [{ q: "我如何加入Gen Z？", a: "填写联系部分的表格。我们将在48小时内与您联系。" }, { q: "培训有什么先决条件？", a: "没有技术先决条件。只有动力重要。我们从零开始培训您。" }, { q: "你们的服务费用是多少？", a: "价格因项目而异。联系我们获取免费个性化报价。" }, { q: "我可以作为自由职业者与Gen Z合作吗？", a: "是的！Gen Z就是为了这个而存在的。加入社区，申请符合您资料的项目。" }, { q: "加入Gen Z需要费用吗？", a: "不需要，会员完全免费。Gen Z对所有有动力的开发者开放。" }],
             contactTitle: "讨论您的项目", send: "发送", quote: '"Gen Z：技术人人可及，由一代代码团结的开发者推动。"',
             copyright: "© 2025 Gen Z Tech — 技术人人可及",
             counter1: "培训学生", counter2: "交付项目", counter3: "国家", counter4: "满意度",
             processTitle: "GEN Z 如何运作", processSubtitle: "从合同签署到您的报酬", faqTitle: "常见问题", faqSubtitle: "您的问题的答案",
-            testimonialsTitle: "他们信任我们"
+            faq1q: "我如何加入Gen Z？", faq1a: "填写联系部分的表格或点击页脚的WhatsApp按钮。我们将在48小时内与您联系。",
+            faq2q: "培训有什么先决条件？", faq2a: "没有技术先决条件。只有动力重要。我们从零开始培训您。",
+            faq3q: "你们的服务费用是多少？", faq3a: "价格因项目而异。联系我们获取免费个性化报价。",
+            faq4q: "我可以作为自由职业者与Gen Z合作吗？", faq4a: "是的！Gen Z就是为了这个而存在的。加入社区，申请符合您资料的项目。",
+            faq5q: "加入Gen Z需要费用吗？", faq5a: "不需要，会员完全免费。Gen Z对所有有动力的开发者开放。",
+            testimonialsTitle: "他们信任我们",
+            servicesTitle: "我们能为您做什么？", servicesSub: "我们解决实际问题",
+            svc1Title: "网站建设", svc1Desc: "我们帮助您为企业创建现代化、美观的网站。",
+            svc2Title: "网络应用", svc2Desc: "定制的网络应用程序，满足您的独特需求。",
+            svc3Title: "移动应用", svc3Desc: "适用于iOS和Android的美丽高性能移动应用。",
+            svc4Title: "应用维护", svc4Desc: "我们掌握多种编程语言和框架。",
+            svc5Title: "人工智能", svc5Desc: "让您的应用更具互动性、吸引力和智能性。",
+            svc6Title: "数据分析", svc6Desc: "通过数据驱动的洞察优化您的应用，做出更明智的决策。",
+            svc7Title: "n8n自动化", svc7Desc: "使用n8n自动化您的业务流程。",
+            svc8Title: "安全与摄像头", svc8Desc: "摄像头安装，数据保护解决方案。",
+            svc9Title: "数字营销", svc9Desc: "数字化策略，提升您的知名度。",
+            valuesTitle: "我们的创始价值观", valuesSub: "日常指导我们的准则",
+            val1Title: "互助", val1Desc: "在Gen Z，我们分享、互助、共同成长。没有无谓的竞争。一个人的成功就是所有人的成功。",
+            val2Title: "创新", val2Desc: "我们探索新技术（AI、移动、嵌入式、区块链），始终保持领先地位，提供现代化解决方案。",
+            val3Title: "可及性", val3Desc: "技术面向所有人，没有学历、国家或水平的障碍。每位有才华的开发者都值得机会。",
+            aboutTitle: "关于GEN Z", aboutSub: "我们的故事，我们的愿景",
+            aboutP1: "Gen Z是一个由学生和开发者组成的团体，因对数字技术和代码的热爱而团结在一起。我们汇集了来自多个国家的开发者，因为代码将我们联系在一起。",
+            aboutP2: "随着AI的到来，今天任何人都可以成为他们想成为的人……但为此，你需要有人引导你。Gen Z的诞生就是为了帮助人们，通过我们的数字解决方案让他们的生活更轻松。",
+            aboutP3: "我们的学院已经培训了全球1200多名学生。我们组织技术论坛、在线培训，并支持年轻开发者进入职业生涯。",
+            aboutQuote: "Gen Z不属于任何人。Gen Z属于每一位想在真实项目上工作、积累知识、找到自由职业任务的开发者。",
+            aboutP4: "我们的愿景？创造一个你不再感到孤单的空间，周围有导师，你所学到的成为真正的职业，你可以通过代码谋生。",
+            aboutStat1: "培训学生", aboutStat2: "交付项目", aboutStat3: "国家", aboutStat4: "积极互助",
+            teamTitle: "GEN Z 团队", teamSub: "被代码团结的开发者，分布在多个国家",
+            teamRole1: "后端与DevOps", teamRole2: "前端与UI/UX", teamRole3: "数据与AI", teamRole4: "移动端 (Flutter)",
+            teamRole5: "安全与后端", teamRole6: "AI与LLM", teamRole7: "社区与产品", teamRole8: "开发主管 · 创始人",
+            partnersTitle: "他们支持科技青年", partnersSub: "我们的合作伙伴和贡献者",
+            partnersCat1: "我们的赞助商与合作伙伴", partnersCat2: "我们的贡献者",
+            missionsTitle: "可用任务", missionsSub: "为Gen Z成员提供的真实项目",
+            devisTitle: "请求免费报价", devisDesc: "描述您的项目，我们将在48小时内回复。",
+            devisBtn: "发送请求", devisSmall: "✅ 免费 • 无义务 • 快速回复",
+            newsletterTitle: "不要错过任何机会", newsletterDesc: "直接在您的收件箱中接收项目、培训和自由职业机会。",
+            newsletterBtn: "订阅", newsletterSmall: "没有垃圾邮件，一键退订。",
+            footerDesc: "技术人人可及，由一代被代码团结的开发者推动。",
+            footerJoinTitle: "📱 加入Gen Z", footerJoinDesc: "加入我们的WhatsApp社区：真实项目、互助、自由职业。", footerJoinBtn: "加入群组",
+            footerPartnersTitle: "🤝 我们的合作伙伴", footerRulesTitle: "📜 Gen Z 规则",
+            rule1: "互助与知识分享", rule2: "尊重技术主管和客户", rule3: "项目保密", rule4: "对已接受任务的承诺",
+            footerLegalTitle: "⚖️ 法律", footerLegalLink: "法律声明"
         }
     };
 
@@ -1863,6 +2409,159 @@ document.querySelectorAll('.faq-question').forEach(question => {
 
     const savedLang = localStorage.getItem('genz_lang');
     updateLanguage(savedLang || 'fr');
+</script>
+
+<script>
+(function() {
+    const textElement = document.getElementById('animatedText');
+    if (textElement && !textElement.hasAttribute('data-animated')) {
+        textElement.setAttribute('data-animated', 'true');
+        const originalHTML = textElement.innerHTML;
+        const text = originalHTML.replace(/<br>/g, ' ').replace(/<[^>]*>/g, '');
+        textElement.innerHTML = '';
+        let i = 0;
+        function typeNext() {
+            if (i < text.length) {
+                if (text[i] === ' ') {
+                    textElement.innerHTML += ' ';
+                } else {
+                    textElement.innerHTML += text[i];
+                }
+                i++;
+                setTimeout(typeNext, 35);
+            }
+        }
+        typeNext();
+    }
+    const container = document.getElementById('hologramCitation');
+    if (container) {
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            container.style.transform = `perspective(1200px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) scale(1.01)`;
+            const heatDist = container.querySelector('.heat-distortion');
+            if (heatDist) {
+                const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+                const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+                heatDist.style.setProperty('--mouse-x', `${mouseX}%`);
+                heatDist.style.setProperty('--mouse-y', `${mouseY}%`);
+            }
+        });
+        container.addEventListener('mouseleave', () => {
+            container.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1)';
+        });
+    }
+    const canvas = document.getElementById('starfieldCanvas');
+    if (canvas) {
+        const parent = container || canvas.parentElement;
+        let stars = [];
+        let animFrame;
+        function initStars() {
+            const width = parent.offsetWidth;
+            const height = parent.offsetHeight;
+            canvas.width = width;
+            canvas.height = height;
+            stars = [];
+            for (let i = 0; i < 80; i++) {
+                stars.push({ x: Math.random() * width, y: Math.random() * height, radius: Math.random() * 2 + 0.5, alpha: Math.random() * 0.5 + 0.2, speed: 0.3 + Math.random() * 1.5 });
+            }
+        }
+        function drawStars() {
+            if (!canvas || !canvas.getContext) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+            const width = parent.offsetWidth;
+            const height = parent.offsetHeight;
+            if (width === 0 || height === 0) return;
+            canvas.width = width;
+            canvas.height = height;
+            ctx.clearRect(0, 0, width, height);
+            stars.forEach(star => {
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > height) {
+                    star.y = 0;
+                    star.x = Math.random() * width;
+                }
+            });
+            animFrame = requestAnimationFrame(drawStars);
+        }
+        initStars();
+        drawStars();
+        window.addEventListener('resize', () => { initStars(); });
+    }
+})();
+</script>
+
+<script>
+(function() {
+    const teamMembersData = [
+        { name: "Kitara Budju", role: "Dev Lead · Founder", skills: "Stratégie, Fullstack, IA", photo: "images/kit1.PNG", portfolio: "https://kitarabudju4-prog.github.io/portfolio/#apropos" },
+        { name: "Artecalo", role: "Mentor", skills: "Architecture, conseil", photo: "https://randomuser.me/api/portraits/men/45.jpg", portfolio: "#" },
+        { name: "Dorcas", role: "Formatrice", skills: "Pédagogie, UI/UX", photo: "images/profile_2_1770825084.PNG", portfolio: "#" },
+        { name: "Arnel", role: "Lead Tech", skills: "IA, backend", photo: "images/profile_3_1772296137.PNG", portfolio: "#" },
+        { name: "Parfait", role: "Backend Dev", skills: "Python, Node.js", photo: "images/MIEE4258.JPG", portfolio: "#" },
+        { name: "François", role: "Frontend Dev", skills: "React, Tailwind", photo: "images/François.JPG", portfolio: "#" },
+        { name: "Bedel", role: "Data Engineer", skills: "Python, SQL", photo: "images/konan.JPG", portfolio: "#" },
+        { name: "Aldiels", role: "Mobile Dev", skills: "Flutter, Firebase", photo: "images/kadima.JPG", portfolio: "#" },
+        { name: "Djesse", role: "Security", skills: "Go, OWASP", photo: "images/djesse.JPG", portfolio: "#" }
+    ];
+
+    function buildTeamCarousel() {
+        const container = document.getElementById('teamCarousel');
+        if (!container) return;
+        container.innerHTML = '';
+
+        teamMembersData.forEach((m) => {
+            const link = document.createElement('a');
+            link.className = 'member-card';
+            link.href = m.portfolio;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.innerHTML = `
+                <div class="member-photo-wrapper">
+                    <div class="photo-aura"></div>
+                    <div class="member-photo"><img src="${m.photo}" alt="${m.name}" loading="lazy"></div>
+                </div>
+                <div class="member-name">${m.name}</div>
+                <div class="member-role">${m.role}</div>
+                <div class="member-skills">${m.skills}</div>
+            `;
+            container.appendChild(link);
+        });
+    }
+
+    function initCarouselButtons() {
+        const prevBtn = document.getElementById('teamPrev');
+        const nextBtn = document.getElementById('teamNext');
+        const carousel = document.getElementById('teamCarousel');
+
+        if (prevBtn && carousel) {
+            prevBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -280, behavior: 'smooth' });
+            });
+        }
+        if (nextBtn && carousel) {
+            nextBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: 280, behavior: 'smooth' });
+            });
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            buildTeamCarousel();
+            initCarouselButtons();
+        });
+    } else {
+        buildTeamCarousel();
+        initCarouselButtons();
+    }
+})();
 </script>
 </body>
 </html>
