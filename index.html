@@ -267,6 +267,8 @@
 
         .hero p { font-size: 1.1rem; color: #9CA3AF; margin-bottom: 32px; }
 
+        .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+
         .hero-carousel {
             position: relative; border-radius: 24px; overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -679,7 +681,8 @@
         .newsletter-form button {
             background: #10B981; border: none; padding: 14px 28px;
             border-radius: 40px; font-weight: 600; cursor: pointer;
-            transition: all 0.2s; color: white;
+            transition: all 0.2s; color: white; font-size: 1.05rem;
+            display: inline-flex; align-items: center; gap: 8px;
         }
         .newsletter-form button:hover { background: #059669; transform: translateY(-2px); }
         .newsletter-card small { display: block; margin-top: 16px; color: #6B7280; font-size: 0.7rem; }
@@ -807,6 +810,7 @@
             .desktop-menu { display: none; }
             .menu-btn { display: block; }
             .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero-buttons { justify-content: center; }
             .hero h1 { font-size: 2rem; }
             .animated-text { font-size: 1.5rem; }
             .contact-grid { grid-template-columns: 1fr; }
@@ -1091,11 +1095,11 @@
             </div>
         </div>
         <div class="desktop-menu">
-            <a href="#accueil">Accueil</a>
-            <a href="#services">Services</a>
-            <a href="#about">À propos</a>
-            <a href="#team">Équipe</a>
-            <a href="#contact">Contact</a>
+            <a href="#accueil"><span data-key="nav-home">Accueil</span></a>
+            <a href="#services"><span data-key="nav-services">Services</span></a>
+            <a href="#about"><span data-key="nav-about">À propos</span></a>
+            <a href="#team"><span data-key="nav-team">Équipe</span></a>
+            <a href="#contact"><span data-key="nav-contact">Contact</span></a>
             <div class="desktop-lang">
                 <button class="lang-btn" data-lang="fr">🇫🇷 FR</button>
                 <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
@@ -1143,8 +1147,10 @@
                     <span class="gradient-change" id="changingText">Des Résultats Sans Limites.</span>
                 </div>
                 <p id="heroDesc">Gen Z : une communauté de développeurs unis par le code. Nous transformons vos idées en solutions puissantes avec l'IA, le web, le mobile et bien plus.</p>
-                <a href="#contact" class="btn btn-primary" id="btnStart"><i class="fas fa-paper-plane"></i> Démarrer un projet</a>
-                <a href="#services" class="btn btn-outline" style="margin-left: 12px;" id="btnServices"><i class="fas fa-cogs"></i> Nos services</a>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary" id="btnStart"><i class="fas fa-paper-plane"></i> Démarrer un projet</a>
+                    <a href="#services" class="btn btn-outline" id="btnServices"><i class="fas fa-cogs"></i> Nos services</a>
+                </div>
             </div>
             <div class="hero-carousel">
                 <img id="carouselImg" class="carousel-image" src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Gen Z Tech">
@@ -1337,8 +1343,8 @@
 
     <section id="team" class="section team-section">
         <div class="container">
-            <h2 class="section-title">✨ L'ÉQUIPE GEN Z ✨</h2>
-            <p class="section-subtitle">Clique sur un membre pour découvrir son portfolio</p>
+            <h2 class="section-title" data-key="teamTitle">✨ L'ÉQUIPE GEN Z ✨</h2>
+            <p class="section-subtitle" data-key="teamSub">Clique sur un membre pour découvrir son portfolio</p>
 
             <div class="team-carousel-wrapper">
                 <button class="carousel-btn prev" id="teamPrev"><i class="fas fa-chevron-left"></i></button>
@@ -1347,7 +1353,7 @@
             </div>
 
             <div class="join-team-link">
-                ⚡ Tu veux faire partie de l'équipe ? <a href="#contact">Rejoins Gen Z</a>
+                <span data-key="teamJoinText">⚡ Tu veux faire partie de l'équipe ?</span> <a href="#contact" data-key="teamJoinLink">Rejoins Gen Z</a>
             </div>
         </div>
     </section>
@@ -1410,10 +1416,10 @@
                         <input type="hidden" name="_subject" value="📩 NOUVEAU MESSAGE - Gen Z Tech">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
-                        <div class="form-group"><input type="text" name="Nom" placeholder="Nom complet" required></div>
-                        <div class="form-group"><input type="email" name="Email" placeholder="Email" required></div>
-                        <div class="form-group"><textarea name="Message" rows="4" placeholder="Votre message..." required></textarea></div>
-                        <button type="submit" class="btn btn-primary" style="width:100%">Envoyer <i class="fas fa-arrow-right"></i></button>
+                        <div class="form-group"><input type="text" name="Nom" data-key="contactPlaceholderName" placeholder="Nom complet" required></div>
+                        <div class="form-group"><input type="email" name="Email" data-key="contactPlaceholderEmail" placeholder="Email" required></div>
+                        <div class="form-group"><textarea name="Message" rows="4" data-key="contactPlaceholderMessage" placeholder="Votre message..." required></textarea></div>
+                        <button type="submit" class="btn btn-primary" style="width:100%"><span data-key="send">Envoyer</span> <i class="fas fa-arrow-right"></i></button>
                     </form>
                 </div>
                 <div class="story-card" style="display: flex; flex-direction: column; justify-content: center;">
@@ -1436,48 +1442,48 @@
         <p class="section-subtitle" data-key="missionsSub">Des projets réels pour les membres Gen Z</p>
         <div class="missions-grid">
             <div class="mission-card">
-                <div class="mission-badge">🔥 Nouveau</div>
-                <h3>Site e-commerce complet</h3>
-                <p>Création d'une boutique en ligne avec paiement intégré (Stripe/PayPal).</p>
+                <div class="mission-badge" data-key="mission1Badge">🔥 Nouveau</div>
+                <h3 data-key="mission1Title">Site e-commerce complet</h3>
+                <p data-key="mission1Desc">Création d'une boutique en ligne avec paiement intégré (Stripe/PayPal).</p>
                 <div class="mission-info">
-                    <span><i class="fas fa-tag"></i> 500 - 800 €</span>
-                    <span><i class="fas fa-clock"></i> 3 semaines</span>
-                    <span><i class="fas fa-code"></i> WordPress / Shopify</span>
+                    <span><i class="fas fa-tag"></i> <span data-key="mission1Price">500 - 800 €</span></span>
+                    <span><i class="fas fa-clock"></i> <span data-key="mission1Duration">3 semaines</span></span>
+                    <span><i class="fas fa-code"></i> <span data-key="mission1Tech">WordPress / Shopify</span></span>
                 </div>
-                <button class="mission-btn" data-mission="Site e-commerce complet">Postuler <i class="fas fa-envelope"></i></button>
+                <button class="mission-btn" data-mission="Site e-commerce complet"><span data-key="missionBtn">Postuler</span> <i class="fas fa-envelope"></i></button>
             </div>
             <div class="mission-card">
-                <div class="mission-badge">⭐ Populaire</div>
-                <h3>App mobile Flutter</h3>
-                <p>Application de livraison pour Android et iOS.</p>
+                <div class="mission-badge" data-key="mission2Badge">⭐ Populaire</div>
+                <h3 data-key="mission2Title">App mobile Flutter</h3>
+                <p data-key="mission2Desc">Application de livraison pour Android et iOS.</p>
                 <div class="mission-info">
-                    <span><i class="fas fa-tag"></i> 1200 - 1500 €</span>
-                    <span><i class="fas fa-clock"></i> 6 semaines</span>
-                    <span><i class="fas fa-code"></i> Flutter, Firebase</span>
+                    <span><i class="fas fa-tag"></i> <span data-key="mission2Price">1200 - 1500 €</span></span>
+                    <span><i class="fas fa-clock"></i> <span data-key="mission2Duration">6 semaines</span></span>
+                    <span><i class="fas fa-code"></i> <span data-key="mission2Tech">Flutter, Firebase</span></span>
                 </div>
-                <button class="mission-btn" data-mission="App mobile Flutter">Postuler <i class="fas fa-envelope"></i></button>
+                <button class="mission-btn" data-mission="App mobile Flutter"><span data-key="missionBtn">Postuler</span> <i class="fas fa-envelope"></i></button>
             </div>
             <div class="mission-card">
-                <div class="mission-badge">🤖 IA</div>
-                <h3>Chatbot intelligent</h3>
-                <p>Intégration d'un assistant IA pour site web client.</p>
+                <div class="mission-badge" data-key="mission3Badge">🤖 IA</div>
+                <h3 data-key="mission3Title">Chatbot intelligent</h3>
+                <p data-key="mission3Desc">Intégration d'un assistant IA pour site web client.</p>
                 <div class="mission-info">
-                    <span><i class="fas fa-tag"></i> 800 - 1000 €</span>
-                    <span><i class="fas fa-clock"></i> 2 semaines</span>
-                    <span><i class="fas fa-code"></i> OpenAI, LangChain</span>
+                    <span><i class="fas fa-tag"></i> <span data-key="mission3Price">800 - 1000 €</span></span>
+                    <span><i class="fas fa-clock"></i> <span data-key="mission3Duration">2 semaines</span></span>
+                    <span><i class="fas fa-code"></i> <span data-key="mission3Tech">OpenAI, LangChain</span></span>
                 </div>
-                <button class="mission-btn" data-mission="Chatbot intelligent">Postuler <i class="fas fa-envelope"></i></button>
+                <button class="mission-btn" data-mission="Chatbot intelligent"><span data-key="missionBtn">Postuler</span> <i class="fas fa-envelope"></i></button>
             </div>
             <div class="mission-card">
-                <div class="mission-badge">📊 Data</div>
-                <h3>Tableau de bord analytics</h3>
-                <p>Dashboard pour visualiser les données clients.</p>
+                <div class="mission-badge" data-key="mission4Badge">📊 Data</div>
+                <h3 data-key="mission4Title">Tableau de bord analytics</h3>
+                <p data-key="mission4Desc">Dashboard pour visualiser les données clients.</p>
                 <div class="mission-info">
-                    <span><i class="fas fa-tag"></i> 600 - 900 €</span>
-                    <span><i class="fas fa-clock"></i> 3 semaines</span>
-                    <span><i class="fas fa-code"></i> Python, Power BI</span>
+                    <span><i class="fas fa-tag"></i> <span data-key="mission4Price">600 - 900 €</span></span>
+                    <span><i class="fas fa-clock"></i> <span data-key="mission4Duration">3 semaines</span></span>
+                    <span><i class="fas fa-code"></i> <span data-key="mission4Tech">Python, Power BI</span></span>
                 </div>
-                <button class="mission-btn" data-mission="Tableau de bord analytics">Postuler <i class="fas fa-envelope"></i></button>
+                <button class="mission-btn" data-mission="Tableau de bord analytics"><span data-key="missionBtn">Postuler</span> <i class="fas fa-envelope"></i></button>
             </div>
         </div>
     </div>
@@ -1486,26 +1492,26 @@
 <!-- Modal formulaire candidature -->
 <div id="candidatureModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background: #111827; border-radius: 32px; padding: 32px; max-width: 500px; width: 90%; margin: 20px; border: 1px solid #10B981;">
-        <h2 style="color: #10B981; margin-bottom: 16px;">Postuler à la mission</h2>
+        <h2 style="color: #10B981; margin-bottom: 16px;" data-key="modalTitle">Postuler à la mission</h2>
         <form id="candidatureForm" action="https://formsubmit.co/kitarabudju5@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="📢 NOUVELLE CANDIDATURE - Gen Z Tech">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="Mission" id="missionNameHidden">
             <div class="form-group">
-                <input type="text" name="Nom complet" placeholder="Nom complet" required style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;">
+                <input type="text" name="Nom complet" data-key="modalPlaceholderName" placeholder="Nom complet" required style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;">
             </div>
             <div class="form-group">
-                <input type="email" name="Email" placeholder="Email" required style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;">
+                <input type="email" name="Email" data-key="modalPlaceholderEmail" placeholder="Email" required style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;">
             </div>
             <div class="form-group">
-                <input type="tel" name="Téléphone WhatsApp" placeholder="Téléphone WhatsApp" required style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;">
+                <input type="tel" name="Téléphone WhatsApp" data-key="modalPlaceholderPhone" placeholder="Téléphone WhatsApp" required style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;">
             </div>
             <div class="form-group">
-                <textarea name="Compétences / Expériences" rows="3" placeholder="Tes compétences / expériences" style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;"></textarea>
+                <textarea name="Compétences / Expériences" rows="3" data-key="modalPlaceholderSkills" placeholder="Tes compétences / expériences" style="width:100%; padding:12px; border-radius:12px; background:#1A2332; border:1px solid #2D3A4A; color:white;"></textarea>
             </div>
-            <button type="submit" style="background:#10B981; color:white; border:none; padding:14px; border-radius:40px; width:100%; font-weight:600; cursor:pointer;">Envoyer ma candidature <i class="fas fa-envelope"></i></button>
-            <button type="button" onclick="fermerModal()" style="background:transparent; color:#9CA3AF; border:1px solid #374151; padding:10px; border-radius:40px; width:100%; margin-top:12px; cursor:pointer;">Annuler</button>
+            <button type="submit" style="background:#10B981; color:white; border:none; padding:14px; border-radius:40px; width:100%; font-weight:600; cursor:pointer;"><span data-key="modalSubmit">Envoyer ma candidature</span> <i class="fas fa-envelope"></i></button>
+            <button type="button" onclick="fermerModal()" style="background:transparent; color:#9CA3AF; border:1px solid #374151; padding:10px; border-radius:40px; width:100%; margin-top:12px; cursor:pointer;" data-key="modalCancel">Annuler</button>
         </form>
     </div>
 </div>
@@ -1617,38 +1623,38 @@ function fermerModal() {
 <!-- ========== SECTION PROCESS GEN Z ========== -->
 <div class="section process-section">
     <div class="container">
-        <h2 class="section-title">COMMENT GEN Z FONCTIONNE</h2>
-        <p class="section-subtitle">De la signature du contrat à ta rémunération</p>
+        <h2 class="section-title" data-key="processTitle">COMMENT GEN Z FONCTIONNE</h2>
+        <p class="section-subtitle" data-key="processSubtitle">De la signature du contrat à ta rémunération</p>
         <div class="process-grid">
             <div class="process-step">
                 <div class="step-number">1</div>
-                <h3>Prospection</h3>
-                <p>Kitara trouve des entreprises et signe les contrats.</p>
+                <h3 data-key="process1Title">Prospection</h3>
+                <p data-key="process1Desc">Kitara trouve des entreprises et signe les contrats.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">2</div>
-                <h3>Brief équipe</h3>
-                <p>On revient vers la communauté avec les besoins.</p>
+                <h3 data-key="process2Title">Brief équipe</h3>
+                <p data-key="process2Desc">On revient vers la communauté avec les besoins.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">3</div>
-                <h3>Sélection</h3>
-                <p>Tu es choisi selon ton profil et ta motivation.</p>
+                <h3 data-key="process3Title">Sélection</h3>
+                <p data-key="process3Desc">Tu es choisi selon ton profil et ta motivation.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">4</div>
-                <h3>Lead Tech</h3>
-                <p>Tu intègres une équipe avec un mentor technique.</p>
+                <h3 data-key="process4Title">Lead Tech</h3>
+                <p data-key="process4Desc">Tu intègres une équipe avec un mentor technique.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">5</div>
-                <h3>Réalisation</h3>
-                <p>Tu bosses, tu apprends et tu es payé.</p>
+                <h3 data-key="process5Title">Réalisation</h3>
+                <p data-key="process5Desc">Tu bosses, tu apprends et tu es payé.</p>
             </div>
             <div class="process-step">
                 <div class="step-number">6</div>
-                <h3>Livraison + CV</h3>
-                <p>Projet livré, expérience validée, argent gagné.</p>
+                <h3 data-key="process6Title">Livraison + CV</h3>
+                <p data-key="process6Desc">Projet livré, expérience validée, argent gagné.</p>
             </div>
         </div>
     </div>
@@ -1859,7 +1865,7 @@ document.querySelectorAll('.faq-question').forEach(question => {
 <div class="devis-section">
     <div class="container">
         <div class="devis-card">
-            <h2 data-key="devisTitle"><i class="fas fa-file-invoice-dollar"></i> Demandez un devis gratuit</h2>
+            <h2><i class="fas fa-file-invoice-dollar"></i> <span data-key="devisTitle">Demandez un devis gratuit</span></h2>
             <p data-key="devisDesc">Décrivez-nous votre projet, nous vous répondons sous 48h.</p>
             <form id="devisForm" class="devis-form" action="https://formsubmit.co/kitarabudju5@gmail.com" method="POST">
                 <input type="hidden" name="_subject" value="📢 NOUVELLE DEMANDE DE DEVIS - Gen Z Tech">
@@ -1867,27 +1873,27 @@ document.querySelectorAll('.faq-question').forEach(question => {
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="https://genztech.com/merci.html">
                 <div class="form-row">
-                    <input type="text" name="Nom complet" placeholder="Nom complet" required>
-                    <input type="email" name="Email" placeholder="Email" required>
+                    <input type="text" name="Nom complet" data-key="devisPlaceholderName" placeholder="Nom complet" required>
+                    <input type="email" name="Email" data-key="devisPlaceholderEmail" placeholder="Email" required>
                 </div>
                 <div class="form-row">
-                    <input type="tel" name="Téléphone" placeholder="Téléphone" required>
+                    <input type="tel" name="Téléphone" data-key="devisPlaceholderPhone" placeholder="Téléphone" required>
                     <select name="Type de projet" required>
-                        <option value="">Type de projet</option>
-                        <option>Site web</option>
-                        <option>Application mobile</option>
-                        <option>Application web</option>
-                        <option>Intelligence Artificielle</option>
-                        <option>Automatisation / n8n</option>
-                        <option>Marketing digital</option>
-                        <option>Autre</option>
+                        <option value="" data-key="devisSelectLabel">Type de projet</option>
+                        <option data-key="devisOption1">Site web</option>
+                        <option data-key="devisOption2">Application mobile</option>
+                        <option data-key="devisOption3">Application web</option>
+                        <option data-key="devisOption4">Intelligence Artificielle</option>
+                        <option data-key="devisOption5">Automatisation / n8n</option>
+                        <option data-key="devisOption6">Marketing digital</option>
+                        <option data-key="devisOption7">Autre</option>
                     </select>
                 </div>
                 <div class="form-row">
-                    <input type="number" name="Budget estimé" placeholder="Budget estimé (€/$)" step="100">
+                    <input type="number" name="Budget estimé" data-key="devisPlaceholderBudget" placeholder="Budget estimé (€/$)" step="100">
                 </div>
-                <textarea name="Description du projet" rows="4" placeholder="Décrivez votre projet en quelques lignes..." required></textarea>
-                <button type="submit" class="devis-btn" data-key="devisBtn"><i class="fas fa-envelope"></i> Envoyer la demande</button>
+                <textarea name="Description du projet" rows="4" data-key="devisPlaceholderDesc" placeholder="Décrivez votre projet en quelques lignes..." required></textarea>
+                <button type="submit" class="devis-btn"><i class="fas fa-envelope"></i> <span data-key="devisBtn">Envoyer la demande</span></button>
             </form>
             <small data-key="devisSmall">✅ Gratuit • Sans engagement • Réponse rapide</small>
         </div>
@@ -1903,8 +1909,8 @@ document.querySelectorAll('.faq-question').forEach(question => {
             <form action="https://formsubmit.co/kitarabudju5@gmail.com" method="POST" class="newsletter-form">
                 <input type="hidden" name="_subject" value="📧 NOUVEL ABONNÉ NEWSLETTER - Gen Z Tech">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="email" name="Email" placeholder="Ton adresse email" required>
-                <button type="submit" data-key="newsletterBtn">S'abonner <i class="fas fa-arrow-right"></i></button>
+                <input type="email" name="Email" data-key="newsletterPlaceholder" placeholder="Ton adresse email" required>
+                <button type="submit"><span data-key="newsletterBtn">S'abonner</span> <i class="fas fa-arrow-right"></i></button>
             </form>
             <small data-key="newsletterSmall">Aucun spam, désinscription en 1 clic.</small>
         </div>
@@ -1986,18 +1992,18 @@ document.querySelectorAll('.faq-question').forEach(question => {
             <div class="heat-distortion"></div>
         </div>
         <div class="footer-copyright">
-            <p>© 2025 Gen Z Tech — Tous droits réservés</p>
+            <p id="copyright">© 2025 Gen Z Tech — Tous droits réservés</p>
         </div>
     </div>
 </footer>
 
 <div id="legalModalFooter" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background: #111827; border-radius: 32px; padding: 32px; max-width: 500px; margin: 20px; border: 1px solid #10B981; max-height: 80vh; overflow-y: auto;">
-        <h2>Mentions légales</h2>
-        <p><strong>Gen Z Tech</strong><br>Association de développeurs<br>Email : contact@genztech.com</p>
-        <h3>Hébergement</h3>
-        <p>GitHub Pages / Netlify</p>
-        <button onclick="document.getElementById('legalModalFooter').style.display='none'" style="background: #10B981; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer; margin-top: 16px; color: white;">Fermer</button>
+        <h2 data-key="legalTitle">Mentions légales</h2>
+        <p><strong>Gen Z Tech</strong><br><span data-key="legalAssociation">Association de développeurs</span><br><span data-key="legalEmail">Email : contact@genztech.com</span></p>
+        <h3 data-key="legalHosting">Hébergement</h3>
+        <p data-key="legalHostingName">GitHub Pages / Netlify</p>
+        <button onclick="document.getElementById('legalModalFooter').style.display='none'" style="background: #10B981; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer; margin-top: 16px; color: white;" data-key="legalClose">Fermer</button>
     </div>
 </div>
 
@@ -2027,6 +2033,12 @@ document.querySelectorAll('.faq-question').forEach(question => {
             copyright: "© 2025 Gen Z Tech — la tech accessible à tous",
             counter1: "Étudiants formés", counter2: "Projets livrés", counter3: "Pays représentés", counter4: "Satisfaction client",
             processTitle: "COMMENT GEN Z FONCTIONNE", processSubtitle: "De la signature du contrat à ta rémunération",
+            process1Title: "Prospection", process1Desc: "Kitara trouve des entreprises et signe les contrats.",
+            process2Title: "Brief équipe", process2Desc: "On revient vers la communauté avec les besoins.",
+            process3Title: "Sélection", process3Desc: "Tu es choisi selon ton profil et ta motivation.",
+            process4Title: "Lead Tech", process4Desc: "Tu intègres une équipe avec un mentor technique.",
+            process5Title: "Réalisation", process5Desc: "Tu bosses, tu apprends et tu es payé.",
+            process6Title: "Livraison + CV", process6Desc: "Projet livré, expérience validée, argent gagné.",
             faqTitle: "Foire aux questions", faqSubtitle: "Les réponses à vos questions",
             faq1q: "Comment puis-je rejoindre Gen Z ?", faq1a: "Vous pouvez remplir le formulaire dans la section Contact ou cliquer sur le bouton WhatsApp dans le footer. Nous vous contacterons dans les 48h.",
             faq2q: "Quels sont les prérequis pour être formé ?", faq2a: "Aucun prérequis technique. Seule la motivation compte. Nous vous formons à partir de zéro.",
@@ -2058,13 +2070,27 @@ document.querySelectorAll('.faq-question').forEach(question => {
             teamTitle: "L'ÉQUIPE GEN Z", teamSub: "Des développeurs unis par le code, répartis sur plusieurs pays",
             teamRole1: "Backend & DevOps", teamRole2: "Frontend & UI/UX", teamRole3: "Data & IA", teamRole4: "Mobile (Flutter)",
             teamRole5: "Sécurité & Backend", teamRole6: "IA & LLM", teamRole7: "Community & Product", teamRole8: "Dev Lead · Founder",
+            teamRoles: ["Dev Lead · Founder", "Mentor", "Formatrice", "Lead Tech", "Backend Dev", "Frontend Dev", "Data Engineer", "Mobile Dev", "Security"],
+            teamSkills: ["Stratégie, Fullstack, IA", "Architecture, conseil", "Pédagogie, UI/UX", "IA, backend", "Python, Node.js", "React, Tailwind", "Python, SQL", "Flutter, Firebase", "Go, OWASP"],
+            teamJoinText: "⚡ Tu veux faire partie de l'équipe ?", teamJoinLink: "Rejoins Gen Z",
             partnersTitle: "Ils soutiennent la jeunesse tech", partnersSub: "Nos partenaires et contributeurs engagés",
             partnersCat1: "Nos Sponsors & Partenaires", partnersCat2: "Nos Contributeurs",
             missionsTitle: "Missions disponibles", missionsSub: "Des projets réels pour les membres Gen Z",
+            mission1Badge: "🔥 Nouveau", mission1Title: "Site e-commerce complet", mission1Desc: "Création d'une boutique en ligne avec paiement intégré (Stripe/PayPal).", mission1Price: "500 - 800 €", mission1Duration: "3 semaines", mission1Tech: "WordPress / Shopify",
+            mission2Badge: "⭐ Populaire", mission2Title: "App mobile Flutter", mission2Desc: "Application de livraison pour Android et iOS.", mission2Price: "1200 - 1500 €", mission2Duration: "6 semaines", mission2Tech: "Flutter, Firebase",
+            mission3Badge: "🤖 IA", mission3Title: "Chatbot intelligent", mission3Desc: "Intégration d'un assistant IA pour site web client.", mission3Price: "800 - 1000 €", mission3Duration: "2 semaines", mission3Tech: "OpenAI, LangChain",
+            mission4Badge: "📊 Data", mission4Title: "Tableau de bord analytics", mission4Desc: "Dashboard pour visualiser les données clients.", mission4Price: "600 - 900 €", mission4Duration: "3 semaines", mission4Tech: "Python, Power BI",
+            missionBtn: "Postuler",
+            modalTitle: "Postuler à la mission", modalPlaceholderName: "Nom complet", modalPlaceholderEmail: "Email", modalPlaceholderPhone: "Téléphone WhatsApp", modalPlaceholderSkills: "Tes compétences / expériences", modalSubmit: "Envoyer ma candidature", modalCancel: "Annuler",
+            contactPlaceholderName: "Nom complet", contactPlaceholderEmail: "Email", contactPlaceholderMessage: "Votre message...",
+            devisPlaceholderName: "Nom complet", devisPlaceholderEmail: "Email", devisPlaceholderPhone: "Téléphone", devisPlaceholderBudget: "Budget estimé (€/$)", devisPlaceholderDesc: "Décrivez votre projet en quelques lignes...",
+            devisSelectLabel: "Type de projet", devisOption1: "Site web", devisOption2: "Application mobile", devisOption3: "Application web", devisOption4: "Intelligence Artificielle", devisOption5: "Automatisation / n8n", devisOption6: "Marketing digital", devisOption7: "Autre",
+            legalTitle: "Mentions légales", legalAssociation: "Association de développeurs", legalEmail: "Email : contact@genztech.com", legalHosting: "Hébergement", legalHostingName: "GitHub Pages / Netlify", legalClose: "Fermer",
+            hologramQuote: "Si j'ai vu plus loin,<br>c'est parce que je me suis tenu<br>sur les épaules de géants.",
             devisTitle: "Demandez un devis gratuit", devisDesc: "Décrivez-nous votre projet, nous vous répondons sous 48h.",
             devisBtn: "Envoyer la demande", devisSmall: "✅ Gratuit • Sans engagement • Réponse rapide",
             newsletterTitle: "Ne rate aucune opportunité", newsletterDesc: "Reçois les projets, formations et offres freelance directement dans ta boîte mail.",
-            newsletterBtn: "S'abonner", newsletterSmall: "Aucun spam, désinscription en 1 clic.",
+            newsletterBtn: "S'abonner", newsletterSmall: "Aucun spam, désinscription en 1 clic.", newsletterPlaceholder: "Ton adresse email",
             footerDesc: "La tech accessible à tous, portée par une génération de développeurs unis par le code.",
             footerJoinTitle: "📱 Rejoindre Gen Z", footerJoinDesc: "Intègre notre communauté WhatsApp : projets réels, entraide, freelance.", footerJoinBtn: "Rejoindre le groupe",
             footerPartnersTitle: "🤝 Nos partenaires", footerRulesTitle: "📜 Règles Gen Z",
@@ -2082,7 +2108,14 @@ document.querySelectorAll('.faq-question').forEach(question => {
             contactTitle: "Let's discuss your project", send: "Send", quote: '"Gen Z: tech accessible to all, driven by a generation of developers united by code."',
             copyright: "© 2025 Gen Z Tech — tech accessible to all",
             counter1: "Students trained", counter2: "Projects delivered", counter3: "Countries", counter4: "Satisfaction",
-            processTitle: "HOW GEN Z WORKS", processSubtitle: "From contract signing to your payment", faqTitle: "FAQ", faqSubtitle: "Answers to your questions",
+            processTitle: "HOW GEN Z WORKS", processSubtitle: "From contract signing to your payment",
+            process1Title: "Prospecting", process1Desc: "Kitara finds companies and signs contracts.",
+            process2Title: "Team Brief", process2Desc: "We come back to the community with needs.",
+            process3Title: "Selection", process3Desc: "You're chosen based on your profile and motivation.",
+            process4Title: "Lead Tech", process4Desc: "You join a team with a technical mentor.",
+            process5Title: "Development", process5Desc: "You work, learn and get paid.",
+            process6Title: "Delivery + CV", process6Desc: "Project delivered, experience validated, money earned.",
+            faqTitle: "FAQ", faqSubtitle: "Answers to your questions",
             faq1q: "How can I join Gen Z?", faq1a: "Fill out the form in the Contact section or click the WhatsApp button in the footer. We will contact you within 48 hours.",
             faq2q: "What are the prerequisites for training?", faq2a: "No technical prerequisites. Only motivation counts. We train you from scratch.",
             faq3q: "How much do your services cost?", faq3a: "Prices vary by project. Contact us for a free personalized quote.",
@@ -2113,13 +2146,27 @@ document.querySelectorAll('.faq-question').forEach(question => {
             teamTitle: "THE GEN Z TEAM", teamSub: "Developers united by code, spread across several countries",
             teamRole1: "Backend & DevOps", teamRole2: "Frontend & UI/UX", teamRole3: "Data & AI", teamRole4: "Mobile (Flutter)",
             teamRole5: "Security & Backend", teamRole6: "AI & LLM", teamRole7: "Community & Product", teamRole8: "Dev Lead · Founder",
+            teamRoles: ["Dev Lead · Founder", "Mentor", "Trainer", "Lead Tech", "Backend Dev", "Frontend Dev", "Data Engineer", "Mobile Dev", "Security"],
+            teamSkills: ["Strategy, Fullstack, AI", "Architecture, consulting", "Teaching, UI/UX", "AI, backend", "Python, Node.js", "React, Tailwind", "Python, SQL", "Flutter, Firebase", "Go, OWASP"],
+            teamJoinText: "⚡ Want to be part of the team?", teamJoinLink: "Join Gen Z",
             partnersTitle: "They support tech youth", partnersSub: "Our partners and committed contributors",
             partnersCat1: "Our Sponsors & Partners", partnersCat2: "Our Contributors",
             missionsTitle: "Available Missions", missionsSub: "Real projects for Gen Z members",
+            mission1Badge: "🔥 New", mission1Title: "E-commerce Website", mission1Desc: "Create an online store with integrated payment (Stripe/PayPal).", mission1Price: "500 - 800 €", mission1Duration: "3 weeks", mission1Tech: "WordPress / Shopify",
+            mission2Badge: "⭐ Popular", mission2Title: "Flutter Mobile App", mission2Desc: "Delivery application for Android and iOS.", mission2Price: "1200 - 1500 €", mission2Duration: "6 weeks", mission2Tech: "Flutter, Firebase",
+            mission3Badge: "🤖 AI", mission3Title: "Smart Chatbot", mission3Desc: "Integrate an AI assistant for a client website.", mission3Price: "800 - 1000 €", mission3Duration: "2 weeks", mission3Tech: "OpenAI, LangChain",
+            mission4Badge: "📊 Data", mission4Title: "Analytics Dashboard", mission4Desc: "Dashboard to visualize client data.", mission4Price: "600 - 900 €", mission4Duration: "3 weeks", mission4Tech: "Python, Power BI",
+            missionBtn: "Apply",
+            modalTitle: "Apply for this mission", modalPlaceholderName: "Full name", modalPlaceholderEmail: "Email", modalPlaceholderPhone: "WhatsApp phone number", modalPlaceholderSkills: "Your skills / experience", modalSubmit: "Send application", modalCancel: "Cancel",
+            contactPlaceholderName: "Full name", contactPlaceholderEmail: "Email", contactPlaceholderMessage: "Your message...",
+            devisPlaceholderName: "Full name", devisPlaceholderEmail: "Email", devisPlaceholderPhone: "Phone", devisPlaceholderBudget: "Estimated budget (€/$)", devisPlaceholderDesc: "Describe your project in a few lines...",
+            devisSelectLabel: "Project type", devisOption1: "Website", devisOption2: "Mobile app", devisOption3: "Web app", devisOption4: "Artificial Intelligence", devisOption5: "Automation / n8n", devisOption6: "Digital Marketing", devisOption7: "Other",
+            legalTitle: "Legal notices", legalAssociation: "Developer association", legalEmail: "Email: contact@genztech.com", legalHosting: "Hosting", legalHostingName: "GitHub Pages / Netlify", legalClose: "Close",
+            hologramQuote: "If I have seen further,<br>it is by standing<br>on the shoulders of giants.",
             devisTitle: "Request a free quote", devisDesc: "Describe your project, we'll respond within 48 hours.",
             devisBtn: "Send request", devisSmall: "✅ Free • No obligation • Quick response",
             newsletterTitle: "Don't miss any opportunity", newsletterDesc: "Receive projects, training and freelance offers directly in your inbox.",
-            newsletterBtn: "Subscribe", newsletterSmall: "No spam, unsubscribe in 1 click.",
+            newsletterBtn: "Subscribe", newsletterSmall: "No spam, unsubscribe in 1 click.", newsletterPlaceholder: "Your email address",
             footerDesc: "Tech accessible to all, driven by a generation of developers united by code.",
             footerJoinTitle: "📱 Join Gen Z", footerJoinDesc: "Join our WhatsApp community: real projects, mutual aid, freelance.", footerJoinBtn: "Join the group",
             footerPartnersTitle: "🤝 Our partners", footerRulesTitle: "📜 Gen Z Rules",
@@ -2137,7 +2184,14 @@ document.querySelectorAll('.faq-question').forEach(question => {
             contactTitle: "Tujadili mradi wako", send: "Tuma", quote: '"Gen Z: teknolojia inapatikana kwa wote, inayoendeshwa na kizazi cha watengenezaji walioungana kwa kodi."',
             copyright: "© 2025 Gen Z Tech — teknolojia inapatikana kwa wote",
             counter1: "Wanafunzi waliofunzwa", counter2: "Miradi iliyowasilishwa", counter3: "Nchi", counter4: "Kuridhika",
-            processTitle: "GEN Z INAFANYA KAZI VIPI", processSubtitle: "Kutoka saini ya mkataba hadi malipo yako", faqTitle: "Maswali", faqSubtitle: "Majibu ya maswali yako",
+            processTitle: "GEN Z INAFANYA KAZI VIPI", processSubtitle: "Kutoka saini ya mkataba hadi malipo yako",
+            process1Title: "Utafutaji", process1Desc: "Kitara hupata makampuni na kutia saini mikataba.",
+            process2Title: "Taarifa kwa Timu", process2Desc: "Tunarudi kwa jumuiya na mahitaji.",
+            process3Title: "Uteuzi", process3Desc: "Unachaguliwa kulingana na wasifu na motisha yako.",
+            process4Title: "Kiongozi Tech", process4Desc: "Unaungana na timu iliyo na mshauri wa kiufundi.",
+            process5Title: "Utengenezaji", process5Desc: "Unafanya kazi, unajifunza na unalipwa.",
+            process6Title: "Uwasilishaji + CV", process6Desc: "Mradi umewasilishwa, uzoefu umethibitishwa, pesa umepata.",
+            faqTitle: "Maswali", faqSubtitle: "Majibu ya maswali yako",
             faq1q: "Ninawezaje kujiunga na Gen Z?", faq1a: "Jaza fomu katika sehemu ya Wasiliana au bofya kitufe cha WhatsApp kwenye footer. Tutawasiliana nawe ndani ya masaa 48.",
             faq2q: "Je, kuna mahitaji yoyote ya kujiunga na mafunzo?", faq2a: "Hakuna mahitaji ya kiufundi. Motisha tu ndio inayohesabu. Tunakufundisha kuanzia mwanzo.",
             faq3q: "Huduma zenu zinagharimu kiasi gani?", faq3a: "Bei hutofautiana kulingana na mradi. Wasiliana nasi kwa makadirio ya bure na ya kibinafsi.",
@@ -2168,13 +2222,27 @@ document.querySelectorAll('.faq-question').forEach(question => {
             teamTitle: "TIMU YA GEN Z", teamSub: "Watengenezaji walioungana na kodi, wameenea nchi mbalimbali",
             teamRole1: "Backend & DevOps", teamRole2: "Frontend & UI/UX", teamRole3: "Data & AI", teamRole4: "Simu (Flutter)",
             teamRole5: "Usalama & Backend", teamRole6: "AI & LLM", teamRole7: "Jamii & Bidhaa", teamRole8: "Kiongozi Dev · Mwanzilishi",
+            teamRoles: ["Kiongozi Dev · Mwanzilishi", "Mshauri", "Mkufunzi", "Kiongozi Tech", "Mtengenezaji Backend", "Mtengenezaji Frontend", "Mhandisi Data", "Mtengenezaji Simu", "Usalama"],
+            teamSkills: ["Mkakati, Fullstack, AI", "Usanifu, ushauri", "Ufundishaji, UI/UX", "AI, backend", "Python, Node.js", "React, Tailwind", "Python, SQL", "Flutter, Firebase", "Go, OWASP"],
+            teamJoinText: "⚡ Unataka kuwa sehemu ya timu?", teamJoinLink: "Jiunge na Gen Z",
             partnersTitle: "Wanaunga mkono vijana wa tech", partnersSub: "Washirika wetu na wachangiaji waliojitolea",
             partnersCat1: "Wafadhili Wetu & Washirika", partnersCat2: "Wachangiaji Wetu",
             missionsTitle: "Kazi Zinazopatikana", missionsSub: "Miradi halisi kwa wanachama wa Gen Z",
+            mission1Badge: "🔥 Mpya", mission1Title: "Tovuti ya E-commerce", mission1Desc: "Unda duka mtandaoni kwa malipo yaliyounganishwa (Stripe/PayPal).", mission1Price: "500 - 800 €", mission1Duration: "Wiki 3", mission1Tech: "WordPress / Shopify",
+            mission2Badge: "⭐ Maarufu", mission2Title: "Programu ya Simu Flutter", mission2Desc: "Programu ya usafirishaji kwa Android na iOS.", mission2Price: "1200 - 1500 €", mission2Duration: "Wiki 6", mission2Tech: "Flutter, Firebase",
+            mission3Badge: "🤖 AI", mission3Title: "Chatbot Mahiri", mission3Desc: "Unganisha msaidizi wa AI kwa tovuti ya mteja.", mission3Price: "800 - 1000 €", mission3Duration: "Wiki 2", mission3Tech: "OpenAI, LangChain",
+            mission4Badge: "📊 Data", mission4Title: "Dashibodi ya Uchambuzi", mission4Desc: "Dashibodi ya kuona data za wateja.", mission4Price: "600 - 900 €", mission4Duration: "Wiki 3", mission4Tech: "Python, Power BI",
+            missionBtn: "Omba",
+            modalTitle: "Omba kazi hii", modalPlaceholderName: "Jina kamili", modalPlaceholderEmail: "Barua pepe", modalPlaceholderPhone: "Nambari ya simu ya WhatsApp", modalPlaceholderSkills: "Ujuzi / uzoefu wako", modalSubmit: "Tuma maombi", modalCancel: "Ghairi",
+            contactPlaceholderName: "Jina kamili", contactPlaceholderEmail: "Barua pepe", contactPlaceholderMessage: "Ujumbe wako...",
+            devisPlaceholderName: "Jina kamili", devisPlaceholderEmail: "Barua pepe", devisPlaceholderPhone: "Simu", devisPlaceholderBudget: "Bajeti iliyokadiriwa (€/$)", devisPlaceholderDesc: "Eleza mradi wako kwa sentensi chache...",
+            devisSelectLabel: "Aina ya mradi", devisOption1: "Tovuti", devisOption2: "Programu ya simu", devisOption3: "Programu ya wavuti", devisOption4: "Akili Bandia", devisOption5: "Uendeshaji / n8n", devisOption6: "Masoko ya Dijitali", devisOption7: "Nyingine",
+            legalTitle: "Maelezo ya kisheria", legalAssociation: "Chama cha watengenezaji", legalEmail: "Barua pepe: contact@genztech.com", legalHosting: "Upangishaji", legalHostingName: "GitHub Pages / Netlify", legalClose: "Funga",
+            hologramQuote: "Kama nimeona mbali zaidi,<br>ni kwa sababu nimesimama<br>juu ya mabega wa majitu.",
             devisTitle: "Omba makadirio ya bure", devisDesc: "Eleza mradi wako, tutakujibu ndani ya masaa 48.",
             devisBtn: "Tuma ombi", devisSmall: "✅ Bure • Hakuna wajibu • Jibu la haraka",
             newsletterTitle: "Usikose fursa yoyote", newsletterDesc: "Pokea miradi, mafunzo na ofa za kujitegemea moja kwa moja kwenye barua pepe yako.",
-            newsletterBtn: "Jisajili", newsletterSmall: "Hakuna spam, jiondoe kwa mbofyo 1.",
+            newsletterBtn: "Jisajili", newsletterSmall: "Hakuna spam, jiondoe kwa mbofyo 1.", newsletterPlaceholder: "Barua pepe yako",
             footerDesc: "Teknolojia inapatikana kwa wote, inayoendeshwa na kizazi cha watengenezaji walioungana na kodi.",
             footerJoinTitle: "📱 Jiunge na Gen Z", footerJoinDesc: "Jiunge na jamii yetu ya WhatsApp: miradi halisi, kusaidiana, kujitegemea.", footerJoinBtn: "Jiunge na kikundi",
             footerPartnersTitle: "🤝 Washirika wetu", footerRulesTitle: "📜 Sheria za Gen Z",
@@ -2192,7 +2260,14 @@ document.querySelectorAll('.faq-question').forEach(question => {
             contactTitle: "讨论您的项目", send: "发送", quote: '"Gen Z：技术人人可及，由一代代码团结的开发者推动。"',
             copyright: "© 2025 Gen Z Tech — 技术人人可及",
             counter1: "培训学生", counter2: "交付项目", counter3: "国家", counter4: "满意度",
-            processTitle: "GEN Z 如何运作", processSubtitle: "从合同签署到您的报酬", faqTitle: "常见问题", faqSubtitle: "您的问题的答案",
+            processTitle: "GEN Z 如何运作", processSubtitle: "从合同签署到您的报酬",
+            process1Title: "寻找客户", process1Desc: "Kitara寻找公司并签署合同。",
+            process2Title: "团队简报", process2Desc: "我们带着需求回到社区。",
+            process3Title: "筛选", process3Desc: "根据您的资料和动机选择您。",
+            process4Title: "技术负责人", process4Desc: "您加入一个有技术导师的团队。",
+            process5Title: "开发", process5Desc: "您工作、学习并获得报酬。",
+            process6Title: "交付 + 简历", process6Desc: "项目交付，经验验证，赚取收入。",
+            faqTitle: "常见问题", faqSubtitle: "您的问题的答案",
             faq1q: "我如何加入Gen Z？", faq1a: "填写联系部分的表格或点击页脚的WhatsApp按钮。我们将在48小时内与您联系。",
             faq2q: "培训有什么先决条件？", faq2a: "没有技术先决条件。只有动力重要。我们从零开始培训您。",
             faq3q: "你们的服务费用是多少？", faq3a: "价格因项目而异。联系我们获取免费个性化报价。",
@@ -2223,13 +2298,27 @@ document.querySelectorAll('.faq-question').forEach(question => {
             teamTitle: "GEN Z 团队", teamSub: "被代码团结的开发者，分布在多个国家",
             teamRole1: "后端与DevOps", teamRole2: "前端与UI/UX", teamRole3: "数据与AI", teamRole4: "移动端 (Flutter)",
             teamRole5: "安全与后端", teamRole6: "AI与LLM", teamRole7: "社区与产品", teamRole8: "开发主管 · 创始人",
+            teamRoles: ["开发主管 · 创始人", "导师", "培训师", "技术主管", "后端开发", "前端开发", "数据工程师", "移动开发", "安全"],
+            teamSkills: ["策略, 全栈, AI", "架构, 咨询", "教学, UI/UX", "AI, 后端", "Python, Node.js", "React, Tailwind", "Python, SQL", "Flutter, Firebase", "Go, OWASP"],
+            teamJoinText: "⚡ 想成为团队的一员？", teamJoinLink: "加入Gen Z",
             partnersTitle: "他们支持科技青年", partnersSub: "我们的合作伙伴和贡献者",
             partnersCat1: "我们的赞助商与合作伙伴", partnersCat2: "我们的贡献者",
             missionsTitle: "可用任务", missionsSub: "为Gen Z成员提供的真实项目",
+            mission1Badge: "🔥 新", mission1Title: "电子商务网站", mission1Desc: "创建具有集成支付（Stripe/PayPal）的在线商店。", mission1Price: "500 - 800 €", mission1Duration: "3周", mission1Tech: "WordPress / Shopify",
+            mission2Badge: "⭐ 热门", mission2Title: "Flutter移动应用", mission2Desc: "适用于Android和iOS的配送应用程序。", mission2Price: "1200 - 1500 €", mission2Duration: "6周", mission2Tech: "Flutter, Firebase",
+            mission3Badge: "🤖 AI", mission3Title: "智能聊天机器人", mission3Desc: "为客户网站集成AI助手。", mission3Price: "800 - 1000 €", mission3Duration: "2周", mission3Tech: "OpenAI, LangChain",
+            mission4Badge: "📊 数据", mission4Title: "分析仪表板", mission4Desc: "可视化客户数据的仪表板。", mission4Price: "600 - 900 €", mission4Duration: "3周", mission4Tech: "Python, Power BI",
+            missionBtn: "申请",
+            modalTitle: "申请此任务", modalPlaceholderName: "全名", modalPlaceholderEmail: "邮箱", modalPlaceholderPhone: "WhatsApp电话号码", modalPlaceholderSkills: "您的技能/经验", modalSubmit: "发送申请", modalCancel: "取消",
+            contactPlaceholderName: "全名", contactPlaceholderEmail: "邮箱", contactPlaceholderMessage: "您的留言...",
+            devisPlaceholderName: "全名", devisPlaceholderEmail: "邮箱", devisPlaceholderPhone: "电话", devisPlaceholderBudget: "预计预算 (€/$)", devisPlaceholderDesc: "用几句话描述您的项目...",
+            devisSelectLabel: "项目类型", devisOption1: "网站", devisOption2: "移动应用", devisOption3: "网络应用", devisOption4: "人工智能", devisOption5: "自动化 / n8n", devisOption6: "数字营销", devisOption7: "其他",
+            legalTitle: "法律声明", legalAssociation: "开发者协会", legalEmail: "邮箱：contact@genztech.com", legalHosting: "托管", legalHostingName: "GitHub Pages / Netlify", legalClose: "关闭",
+            hologramQuote: "如果我看得更远,<br>那是因为我站在<br>巨人的肩膀上。",
             devisTitle: "请求免费报价", devisDesc: "描述您的项目，我们将在48小时内回复。",
             devisBtn: "发送请求", devisSmall: "✅ 免费 • 无义务 • 快速回复",
             newsletterTitle: "不要错过任何机会", newsletterDesc: "直接在您的收件箱中接收项目、培训和自由职业机会。",
-            newsletterBtn: "订阅", newsletterSmall: "没有垃圾邮件，一键退订。",
+            newsletterBtn: "订阅", newsletterSmall: "没有垃圾邮件，一键退订。", newsletterPlaceholder: "您的邮箱地址",
             footerDesc: "技术人人可及，由一代被代码团结的开发者推动。",
             footerJoinTitle: "📱 加入Gen Z", footerJoinDesc: "加入我们的WhatsApp社区：真实项目、互助、自由职业。", footerJoinBtn: "加入群组",
             footerPartnersTitle: "🤝 我们的合作伙伴", footerRulesTitle: "📜 Gen Z 规则",
@@ -2262,10 +2351,59 @@ document.querySelectorAll('.faq-question').forEach(question => {
         document.getElementById('counter3Text').innerText = c.counter3;
         document.getElementById('counter4Text').innerText = c.counter4;
 
+        if (c.hologramQuote) document.getElementById('animatedText').innerHTML = c.hologramQuote;
+
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
-            if (c[key]) el.innerText = c[key];
+            if (c[key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.setAttribute('placeholder', c[key]);
+                } else {
+                    el.innerText = c[key];
+                }
+            }
         });
+
+        // Reconstruire le carrousel des témoignages
+        if (c.testimonials) {
+            const track = document.getElementById('testimonialTrack');
+            if (track) {
+                track.innerHTML = '';
+                c.testimonials.forEach(t => {
+                    const slide = document.createElement('div');
+                    slide.className = 'testimonial-slide';
+                    slide.innerHTML = '<i class="fas fa-quote-left"></i><p>"' + t.text + '"</p><div class="author">' + t.author + '</div>';
+                    track.appendChild(slide);
+                });
+                // Reset carousel position
+                const dots = document.querySelectorAll('.dot');
+                if (dots.length) {
+                    track.style.transform = 'translateX(0)';
+                    dots.forEach((d, i) => d.classList.toggle('active', i === 0));
+                }
+            }
+        }
+
+        // Reconstruire les cartes membres de l'équipe avec les rôles/skills traduits
+        if (c.teamRoles && c.teamSkills) {
+            const container = document.getElementById('teamCarousel');
+            if (container) {
+                const cards = container.querySelectorAll('.member-card');
+                cards.forEach((card, i) => {
+                    if (c.teamRoles[i]) card.querySelector('.member-role').textContent = c.teamRoles[i];
+                    if (c.teamSkills[i]) card.querySelector('.member-skills').textContent = c.teamSkills[i];
+                });
+            }
+        }
+
+        // Mettre à jour les data-mission des boutons de mission
+        const missionTitles = [c.mission1Title, c.mission2Title, c.mission3Title, c.mission4Title];
+        document.querySelectorAll('.mission-btn').forEach((btn, i) => {
+            if (missionTitles[i]) btn.setAttribute('data-mission', missionTitles[i]);
+        });
+
+        // Mettre à jour le texte du thème dans la sidebar
+        setThemeIcons(document.body.classList.contains('light-mode'));
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
@@ -2564,10 +2702,12 @@ document.querySelectorAll('.faq-question').forEach(question => {
         document.addEventListener('DOMContentLoaded', () => {
             buildTeamCarousel();
             initCarouselButtons();
+            if (typeof currentLang !== 'undefined') updateLanguage(currentLang);
         });
     } else {
         buildTeamCarousel();
         initCarouselButtons();
+        if (typeof currentLang !== 'undefined') updateLanguage(currentLang);
     }
 })();
 </script>
